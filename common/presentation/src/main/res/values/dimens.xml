@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="min_width">@dimen/_140sdp</dimen>
+    <dimen name="title_text_size">@dimen/_10ssp</dimen>
+    <dimen name="button_height">@dimen/_48sdp</dimen>
+    <dimen name="button_corner_radius">@dimen/_4sdp</dimen>
+    <dimen name="tag_size">@dimen/_10sdp</dimen>
+    <dimen name="event_margin">@dimen/_6sdp</dimen>
+
+    <!-- Common dimensions -->
+    <dimen name="margin_large">@dimen/_32sdp</dimen>
+    <dimen name="margin_normal">@dimen/_16sdp</dimen>
+    <dimen name="margin_ten">@dimen/_10sdp</dimen>
+    <dimen name="margin_small">@dimen/_8sdp</dimen>
+    <dimen name="margin_micro">@dimen/_5sdp</dimen>
+    <dimen name="margin_two">@dimen/_2sdp</dimen>
+
+    <dimen name="padding_very_large">@dimen/_32sdp</dimen>
+    <dimen name="padding_large">@dimen/_16sdp</dimen>
+    <dimen name="padding_normal">@dimen/_8sdp</dimen>
+    <dimen name="padding_small">@dimen/_4sdp</dimen>
+
+    <dimen name="text_size_h1">@dimen/_28sdp</dimen>
+    <dimen name="text_size_h2">@dimen/_24sdp</dimen>
+    <dimen name="text_size_h3">@dimen/_20sdp</dimen>
+    <dimen name="text_size_h4">@dimen/_18sdp</dimen>
+    <dimen name="text_size_h5">@dimen/_16sdp</dimen>
+    <dimen name="text_size_h6">@dimen/_14sdp</dimen>
+    <dimen name="text_size_subtitle">@dimen/_12sdp</dimen>
+    <dimen name="text_size_body">@dimen/_10sdp</dimen>
+    <dimen name="text_size_caption">@dimen/_9sdp</dimen>
+    <dimen name="text_size_overline">@dimen/_6sdp</dimen>
+
+    <dimen name="spacing_large">@dimen/_10sdp</dimen>
+    <dimen name="spacing_normal">@dimen/_8sdp</dimen>
+    <dimen name="spacing_micro">@dimen/_4sdp</dimen>
+
+    <dimen name="listPreferredItemHeight">@dimen/_16sdp</dimen>
+    <dimen name="zero">0dp</dimen>
+
+    <!-- Global elevation -->
+    <dimen name="elevation">@dimen/_2sdp</dimen>
+
+    <!-- Global image items -->
+    <dimen name="global_item_image_size">@dimen/_50sdp</dimen>
+
+    <!-- Radius -->
+    <dimen name="radius_large">@dimen/_16sdp</dimen>
+    <dimen name="radius_normal">@dimen/_8sdp</dimen>
+    <dimen name="radius_small">@dimen/_3sdp</dimen>
+
+    <!-- Toolbars -->
+    <dimen name="toolbar_inset_start">0dp</dimen>
+
+</resources>

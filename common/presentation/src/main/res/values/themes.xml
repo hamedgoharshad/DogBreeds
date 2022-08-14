@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--Base theme, all common styling here-->
+    <style name="Base.Near" parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary_main</item>
+        <item name="colorOnPrimary">@color/primary_lighter</item>
+        <item name="colorPrimaryVariant">@color/primary_lightest</item>
+        <item name="android:windowBackground">@color/primary_lightest</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/primary_darker</item>
+        <item name="colorSecondaryVariant">@color/blue_300</item>
+        <item name="colorOnSecondary">@color/gray_0_white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/surface_light</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">?attr/isLightTheme</item>
+
+        <!--Material type attributes-->
+        <item name="textAppearanceHeadline1">@style/TextAppearance.Near.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.Near.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.Near.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.Near.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.Near.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.Near.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Near.Subtitle</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.Near.Body</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.Near.Body.Bold</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.Near.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.Near.Overline</item>
+
+        <!--Platform attributes-->
+        <item name="android:navigationBarColor">@color/primary_darkest</item>
+        <item name="colorSurface">@color/surface_main</item>
+        <item name="subtitleTextColor">@color/text_7_dark</item>
+        <item name="android:textColor">@color/gray_0_white</item>
+        <item name="hintTextColor">@color/text_3</item>
+        <item name="android:textColorSecondary">@color/text_5</item>
+
+        <!--Components-->
+        <item name="materialButtonStyle">
+            @style/Widget.MaterialComponents.Button.NearButton
+        </item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
+
+    </style>
+
+    <color name="black">#000000</color>
+</resources>

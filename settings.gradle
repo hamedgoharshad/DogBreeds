@@ -1,0 +1,13 @@
+include ':platform'
+include ':platform:mobile'
+include ':common'
+include ':common:presentation'
+include ':common:test-shared'
+include ':common:data'
+include ':common:domain'
+include ':feature'
+include ':feature:nearby'
+include ':feature:nearby:domain'
+include ':feature:nearby:data'
+include ':feature:nearby:presentation'
+rootProject.name = "DogBreeds"

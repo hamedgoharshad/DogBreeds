@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">data</string>
+    <string name="channel_name">location channel</string>
+    <string name="channel_description">we are collection location</string>
+    <string name="notification_channel_id">location track</string>
+    <string name="notification_title">location</string>
+</resources>

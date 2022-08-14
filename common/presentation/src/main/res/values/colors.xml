@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="primary_lightest">#E4E8FF</color>
+    <color name="primary_lighter">#9EADFC</color>
+    <color name="primary_light">#5872FA</color>
+    <color name="primary_main">#4764FA</color>
+    <color name="primary_dark">#435DE5</color>
+    <color name="primary_darker">#344392</color>
+    <color name="primary_darkest">#25293F</color>
+
+    <color name="secondary_lightest">#E3F3FA</color>
+    <color name="secondary_lighter">#99E1E5</color>
+    <color name="secondary_light">#3DCCCC</color>
+    <color name="secondary_main">#3DCCCC</color>
+    <color name="secondary_dark">#3ABBBC</color>
+    <color name="secondary_darker">#2F777B</color>
+    <color name="secondary_darkest">#24333A</color>
+
+    <color name="surface_light">#FFFFFF</color>
+    <color name="surface_main">#F5F7FF</color>
+    <color name="surface_dark">#EBEFFF</color>
+    <color name="surface_divider">#DFE4F9</color>
+
+    <color name="text_1_light">#EBEDFA</color>
+    <color name="text_2">#BFC7E5</color>
+    <color name="text_3">#A6ACD4</color>
+    <color name="text_4_middle">#8A91B9</color>
+    <color name="text_5">#717798</color>
+    <color name="text_6">#585D77</color>
+    <color name="text_7_dark">#343A50</color>
+
+    <color name="gray_0_white">#FFFFFF</color>
+    <color name="gray_1_text_dark">#FAFAFA</color>
+    <color name="gray_2">#EEEEEE</color>
+    <color name="gray_3">#DDDDDD</color>
+    <color name="gray_4">#AAAAAA</color>
+    <color name="gray_5">#808080</color>
+    <color name="gray_6">#666666</color>
+    <color name="gray_7">#444444</color>
+    <color name="gray_8">#222222</color>
+    <color name="gray_9_text_light">#111111</color>
+    <color name="gray_10_black">#000000</color>
+
+    <color name="green_lightest">#E3F0F6</color>
+    <color name="green_lighter">#99D3D1</color>
+    <color name="green_light">#4FB5AC</color>
+    <color name="green_main">#3CAEA3</color>
+    <color name="green_dark">#39A097</color>
+    <color name="green_darker">#2E6866</color>
+    <color name="green_darkest">#243036</color>
+
+    <color name="red_lightest">#F5E4EC</color>
+    <color name="red_lighter">#F59A9E</color>
+    <color name="red_light">#F45050</color>
+    <color name="red_main">#F43D3D</color>
+    <color name="red_dark">#DF3A3B</color>
+    <color name="red_darker">#8B3034</color>
+    <color name="red_darkest">#36252C</color>
+
+    <color name="yellow_lightest">#F5F4EF</color>
+    <color name="yellow_lighter">#F6E6AD</color>
+    <color name="yellow_light">#F6D86C</color>
+    <color name="yellow_main">#F6D55C</color>
+    <color name="yellow_dark">#E1C357</color>
+    <color name="yellow_darker">#8B7B43</color>
+    <color name="yellow_darkest">#36342F</color>
+
+
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">
+        @color/surface_divider
+    </color>
+</resources>

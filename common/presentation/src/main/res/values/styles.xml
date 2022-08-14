@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.MaterialComponents.Button.NearButton">
+        <item name="android:backgroundTint">?colorSecondary</item>
+    </style>
+
+    <style name="BottomSheetDialogThemeNoFloating" parent="Theme.Design.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize|stateHidden</item>
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="behavior_skipCollapsed">true</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalBottomSheetDialog</item>
+    </style>
+
+    <style name="ModalBottomSheetDialog" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.LargeComponent</item>
+        <item name="behavior_skipCollapsed">true</item>
+        <item name="behavior_fitToContents">true</item>
+        <item name="behavior_expandedOffset">@dimen/_200sdp</item>
+        <item name="behavior_peekHeight">@dimen/_400sdp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/_26sdp</item>
+    </style>
+
+
+    <style name="PermissionDialogStyle" parent="Theme.MaterialComponents.Dialog.Alert">
+        <!-- Used for the buttons text -->
+        <item name="android:buttonBarNegativeButtonStyle">
+            @style/NegativeButtonStyle
+        </item>
+        <item name="android:buttonBarPositiveButtonStyle">
+            @style/PositiveButtonStyle
+        </item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">#000000</item>
+        <!-- Used for the background -->
+        <item name="android:background">#ffffff</item>
+    </style>
+
+
+    <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">#000</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">#000</item>
+    </style>
+
+    <style name="ButtonCancelStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/surface_light</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:textAppearance">?textAppearanceBody2</item>
+        <item name="android:textColor">@color/primary_main</item>
+        <item name="android:padding">@dimen/_8sdp</item>
+        <item name="cornerRadius">@dimen/_10sdp</item>
+        <item name="android:radius">@dimen/_10sdp</item>
+    </style>
+
+    <style name="ButtonSaveStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/primary_main</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:textAppearance">?textAppearanceBody2</item>
+        <item name="android:textColor">@color/text_1_light</item>
+        <item name="cornerRadius">@dimen/_10sdp</item>
+        <item name="android:padding">@dimen/_8sdp</item>
+        <item name="android:radius">@dimen/_10sdp</item>
+    </style>
+
+    <style name="ViewSeparatorStyle">
+        <item name="android:background">@color/surface_divider</item>
+        <item name="android:transitionName">v_line_first</item>
+        <item name="android:layout_marginTop">@dimen/_1sdp</item>
+        <item name="android:layout_marginBottom">@dimen/_1sdp</item>
+    </style>
+
+</resources>

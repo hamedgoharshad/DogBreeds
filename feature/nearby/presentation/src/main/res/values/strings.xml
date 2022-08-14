@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">presentation</string>
+    <string name="msg_error_gps">This app requires GPS to receive nearby places!</string>
+    <string name="msg_permission">This app requires access to the location of your phone</string>
+    <string name="label_open_setting">Go to settings</string>
+    <string name="label_permission">Permission required !</string>
+    <string name="label_retry">Try again</string>
+    <string name="label_no_thanks">No, thanks!</string>
+    <string name="label_address">Address :</string>
+    <string name="msg_error">Please check your connection</string>
+    <string name="place_information">%1$s | %2$s | %3$s </string>
+
+</resources>

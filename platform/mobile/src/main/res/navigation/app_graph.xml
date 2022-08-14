@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/nearby_graph">
+    <include app:graph="@navigation/nearby_graph" />
+</navigation>

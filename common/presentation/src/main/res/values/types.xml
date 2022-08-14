@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="barlow_extra_light">
+        <item name="fontFamily">@font/barlow_extra_light</item>
+        <item name="android:fontFamily">@font/barlow_extra_light</item>
+    </style>
+    <style name="barlow_semi_bold">
+        <item name="fontFamily">@font/raleway_semi_bold</item>
+        <item name="android:fontFamily">@font/raleway_semi_bold</item>
+    </style>
+    <style name="barlow_regular">
+        <item name="fontFamily">@font/barlow_regular</item>
+        <item name="android:fontFamily">@font/barlow_regular</item>
+    </style>
+    <style name="barlow_medium">
+        <item name="fontFamily">@font/barlow_regular</item>
+        <item name="android:fontFamily">@font/barlow_regular</item>
+    </style>
+
+    <style name="TextAppearance.Near.Headline1" parent="barlow_extra_light">
+        <item name="android:textSize">@dimen/text_size_h1</item>
+    </style>
+    <style name="TextAppearance.Near.Headline2" parent="barlow_extra_light">
+        <item name="android:textSize">@dimen/text_size_h2</item>
+    </style>
+    <style name="TextAppearance.Near.Headline3" parent="barlow_semi_bold">
+        <item name="android:textSize">@dimen/text_size_h3</item>
+    </style>
+    <style name="TextAppearance.Near.Headline4" parent="barlow_regular">
+        <item name="android:textSize">@dimen/text_size_h4</item>
+    </style>
+    <style name="TextAppearance.Near.Headline5" parent="barlow_regular">
+        <item name="android:textSize">@dimen/text_size_h5</item>
+    </style>
+    <style name="TextAppearance.Near.Headline6" parent="barlow_regular">
+        <item name="android:textSize">@dimen/text_size_h6</item>
+    </style>
+
+    <style name="TextAppearance.Near.Subtitle" parent="barlow_regular">
+        <item name="android:textSize">@dimen/text_size_subtitle</item>
+    </style>
+
+    <style name="TextAppearance.Near.Body.Bold" parent="barlow_semi_bold">
+        <item name="android:textSize">@dimen/text_size_body</item>
+    </style>
+    <style name="TextAppearance.Near.Body" parent="barlow_regular">
+        <item name="android:textSize">@dimen/text_size_body</item>
+    </style>
+
+    <style name="TextAppearance.Near.Caption" parent="barlow_regular">
+        <item name="android:textSize">@dimen/text_size_caption</item>
+    </style>
+
+    <style name="TextAppearance.Near.Overline" parent="barlow_regular">
+        <item name="android:textSize">@dimen/text_size_overline</item>
+    </style>
+
+    <style name="auto_size_style">
+        <item name="android:textAppearance">?textAppearanceBody2</item>
+        <item name="autoSizeMaxTextSize">@dimen/_16ssp</item>
+        <item name="autoSizeMinTextSize">1sp</item>
+        <item name="autoSizeStepGranularity">1sp</item>
+        <item name="autoSizeTextType">uniform</item>
+    </style>
+
+</resources>
