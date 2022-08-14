@@ -19,8 +19,8 @@ object Modules {
 
     object Feature {
         private const val feature = ":feature"
-        object Nearby {
-            const val root = "$feature:nearby"
+        object Breeds {
+            const val root = "$feature:breeds"
             const val DOMAIN = "$root:domain"
             const val DATA = "$root:data"
             const val PRESENTATION = "$root:presentation"

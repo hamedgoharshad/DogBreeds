@@ -1,4 +1,4 @@
-import Modules.Feature.Nearby
+import Modules.Feature.Breeds
 import dependencies.Libs
 
 plugins {
@@ -71,9 +71,9 @@ dependencies {
         implementation(project(TEST_SHARED))
     }
     Modules.Feature.run {
-        implementation(project(Nearby.DOMAIN))
-        implementation(project(Nearby.DATA))
-        implementation(project(Nearby.PRESENTATION))
+        implementation(project(Breeds.DOMAIN))
+        implementation(project(Breeds.DATA))
+        implementation(project(Breeds.PRESENTATION))
     }
 
     implementation(Libs.DependencyInjection.Hilt.core)

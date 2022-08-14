@@ -1,6 +1,7 @@
 import dependencies.Libs
 import dependencies.Libs.AndroidX.Fragment
 import dependencies.Libs.AndroidX.LifeCycle
+import dependencies.Libs.AndroidX.LifeCycle.lifecycleCompose
 import dependencies.Libs.AndroidX.Navigation
 
 plugins {
@@ -61,12 +62,17 @@ dependencies {
     }
     Libs.Compose.run {
         api(activityCompose)
+        api(material)
+        api(anim)
+        api(tooling)
+        api(uiTestJunit)
+        api(navigation)
+        api(icons)
+        api(coil)
+    }
+    LifeCycle.run {
         api(lifecycleCompose)
-        api (material)
-        api (anim)
-        api (tooling)
-        api (uiTestJunit)
-        api (navigation)
+        api(lifecycleRuntime)
     }
     api(Libs.ImageUtils.coil)
 
