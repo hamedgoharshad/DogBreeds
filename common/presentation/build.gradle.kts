@@ -66,6 +66,7 @@ dependencies {
         api (anim)
         api (tooling)
         api (uiTestJunit)
+        api (navigation)
     }
     api(Libs.ImageUtils.coil)
 

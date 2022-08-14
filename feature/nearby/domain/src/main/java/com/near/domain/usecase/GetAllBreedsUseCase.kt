@@ -11,7 +11,9 @@ import javax.inject.Inject
 class GetAllBreedsUseCase @Inject constructor(
     private val breedsRepository: BreedsRepository,
     @IoDispatcher ioDispatcher: CoroutineDispatcher
-) : CoroutineUseCase<Unit, Result<List<Breed>>>(ioDispatcher) {
-    override suspend fun execute(parameters: Unit): Result<List<Breed>> =
-        breedsRepository.getAllBreeds()
+) : CoroutineUseCase<Unit, List<Breed>>(ioDispatcher) {
+    override suspend fun execute(parameters: Unit): List<Breed> =
+        breedsRepository.getAllBreeds().run {
+            if (isEmpty()) this else throw Exception("There is nothing here")
+        }
 }

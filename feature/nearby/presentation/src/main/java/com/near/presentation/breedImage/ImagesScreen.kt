@@ -1,4 +1,4 @@
-package com.near.presentation.breeds
+package com.near.presentation.breedImage
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,15 +23,15 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.near.domain.model.Breed
 
 @Composable
-fun BreedsRoute(
+fun ImagesRoute(
     modifier: Modifier = Modifier,
-    viewModel: BreedsViewModel = viewModel(),
+    viewModel: ImagesViewModel = viewModel(),
     navigateToFavorites: () -> Unit,
     navigateToImages: (String) -> Unit,
 ) {
-    val uiState by viewModel.breedsUiState.collectAsStatewith()
+    val uiState by viewModel.ImagesUiState.collectAsState()
 
-    BreedsScreen(
+    ImagesScreen(
         modifier = modifier,
         uiState = uiState,
         navigateToFavorites = navigateToFavorites,
@@ -40,9 +40,9 @@ fun BreedsRoute(
 }
 
 @Composable
-fun BreedsScreen(
+fun ImagesScreen(
     modifier: Modifier,
-    uiState: BreedsUiState,
+    uiState: ImagesUiState,
     navigateToFavorites: () -> Unit,
     navigateToImages: (String) -> Unit,
 ) {
@@ -76,23 +76,23 @@ fun BreedsScreen(
             }
         }) {
         when (uiState) {
-            BreedsUiState.Loading -> {}
-            is BreedsUiState.Failed -> {}
-            is BreedsUiState.Success -> {
-                BreedsContent(modifier, uiState,navigateToImages)
+            ImagesUiState.Loading -> {}
+            is ImagesUiState.Failed -> {}
+            is ImagesUiState.Success -> {
+                ImagesContent(modifier, uiState,navigateToImages)
             }
         }
     }
 }
 
 @Composable
-fun BreedsContent(
+fun ImagesContent(
     modifier: Modifier,
-    uiState: BreedsUiState.Success,
+    uiState: ImagesUiState.Success,
     navigateToImages: (String) -> Unit
 ) {
     LazyColumn {
-        items(uiState.breeds) {
+        items(uiState.Images) {
             BreedItem(it, modifier,navigateToImages)
         }
     }
