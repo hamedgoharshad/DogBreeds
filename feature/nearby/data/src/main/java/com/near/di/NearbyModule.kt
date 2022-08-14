@@ -14,11 +14,7 @@ import com.near.datasource.local.interfaces.LocationDatasource
 import com.near.datasource.local.interfaces.RemoteKeyDatasource
 import com.near.datasource.remote.RemoteBreedsDatasourceImpl
 import com.near.datasource.remote.interfaces.RemoteBreedsDatasource
-import com.near.domain.LocationUtil
-import com.near.domain.repository.LocationRepository
-import com.near.domain.repository.NearbyRepository
-import com.near.domain.repository.PlaceDetailRepository
-import com.near.repository.BreedsRepository
+import com.near.domain.repository.BreedsRepository
 import com.near.repository.BreedsRepositoryImpl
 import com.near.utils.INITIAL_LOAD_SIZE
 import com.near.utils.LocationUtilsImpl

@@ -26,7 +26,6 @@ import com.near.common.presentation.extension.hasPermissions
 import com.near.common.presentation.extension.launchAndRepeatWithViewLifecycle
 import com.near.common.presentation.properties.autoCleared
 import com.near.common.presentation.properties.viewBinding
-import com.near.domain.model.Place
 import com.near.presentation.R
 import com.near.presentation.databinding.FragmentNearbyBinding
 import com.near.presentation.nearby.adapter.NearbyListAdapter

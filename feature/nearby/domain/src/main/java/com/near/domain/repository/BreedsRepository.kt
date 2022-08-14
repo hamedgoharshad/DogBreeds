@@ -1,4 +1,4 @@
-package com.near.repository
+package com.near.domain.repository
 
 import com.near.common.domain.utils.Result
 import com.near.domain.model.Breed

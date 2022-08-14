@@ -7,8 +7,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.near.common.domain.utils.onSuccess
-import com.near.domain.usecase.GetLocationUpdatesUsecase
-import com.near.domain.usecase.GetNearbyPlacesUsecase
 import com.near.domain.usecase.GetNearbyPlacesUsecase.Params
 import com.near.mapper.mapToSimpleLocation
 import com.near.mapper.mapToString
