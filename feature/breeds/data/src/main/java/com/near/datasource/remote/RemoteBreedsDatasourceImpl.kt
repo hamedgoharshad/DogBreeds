@@ -11,8 +11,10 @@ class RemoteBreedsDatasourceImpl @Inject constructor(
     override suspend fun getAllBreeds(): List<Breed> =
         service.getBreeds().body()?.let { jsonObject ->
             val allBreedsList = mutableListOf<Breed>()
-            jsonObject.getJSONObject(MESSAGE_LABEL).keys().forEach { key ->
+            val message = jsonObject.getJSONObject(MESSAGE_LABEL)
+            message.keys().forEach { key: String ->
                 allBreedsList.add(Breed(key))
+                // todo: check whether it includes values or not
             }
             allBreedsList.toList()
         } ?: run {

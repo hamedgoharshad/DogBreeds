@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -17,14 +18,21 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.near.domain.model.Breed
+import com.near.presentation.R
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
@@ -113,8 +121,14 @@ fun ImageItem(url: String,isBookmarked:Boolean, modifier: Modifier = Modifier, o
         ) {
             BookmarkButton(isBookmarked, {onBookmarked(url)},modifier.align(Alignment.Start).padding(8.dp))
             AsyncImage(
-                model = url,
-                contentDescription = null
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(url)
+                    .crossfade(true)
+                    .build(),
+                placeholder = painterResource(com.near.common.presentation.R.drawable.ic_placeholder),
+                contentDescription =null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.clip(CircleShape)
             )
         }
     }

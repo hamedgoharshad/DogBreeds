@@ -4,14 +4,6 @@ import android.content.Context
 import androidx.paging.PagingConfig
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.near.datasource.local.LocalNearbyDatasourceImpl
-import com.near.datasource.local.LocalPlaceDetailDataSourceImpl
-import com.near.datasource.local.LocalRemoteKeyDatasourceImpl
-import com.near.datasource.local.LocationDatasourceImpl
-import com.near.datasource.local.interfaces.LocalNearbyDatasource
-import com.near.datasource.local.interfaces.LocalPlaceDetailDataSource
-import com.near.datasource.local.interfaces.LocationDatasource
-import com.near.datasource.local.interfaces.RemoteKeyDatasource
 import com.near.datasource.remote.RemoteBreedsDatasourceImpl
 import com.near.datasource.remote.interfaces.RemoteBreedsDatasource
 import com.near.domain.repository.BreedsRepository
