@@ -1,7 +1,6 @@
 package com.near.repository
 
 import com.near.common.testshared.CoroutineRule
-import com.near.datasource.local.interfaces.LocalPlaceDetailDataSource
 import com.google.common.truth.Truth
 import com.near.datasource.remote.interfaces.RemoteBreedsDatasource
 import io.mockk.coEvery

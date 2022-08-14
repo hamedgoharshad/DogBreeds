@@ -1,8 +1,6 @@
 package com.near.repository
 
 import android.location.Location
-import com.near.common.domain.model.Geocodes
-import com.near.common.domain.model.MainGeo
 import com.near.webApi.response.*
 import retrofit2.Response
 

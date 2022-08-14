@@ -2,7 +2,6 @@ package com.near.repository
 
 import android.location.Location
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.near.datasource.local.interfaces.LocationDatasource
 import io.mockk.MockKAnnotations
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
