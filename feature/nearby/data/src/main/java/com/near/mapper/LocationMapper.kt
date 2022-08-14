@@ -1,7 +1,6 @@
 package com.near.mapper
 
 import android.location.Location
-import com.near.domain.model.SimpleLocation
 
 fun Location.mapToSimpleLocation(): SimpleLocation =
     SimpleLocation(latitude, longitude)

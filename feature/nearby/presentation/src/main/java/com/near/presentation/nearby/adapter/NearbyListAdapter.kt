@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.near.domain.model.Place
 import com.near.presentation.databinding.ItemPlaceBinding
 
 internal class NearbyListAdapter constructor(private val onClick: (Place) -> Unit) :
