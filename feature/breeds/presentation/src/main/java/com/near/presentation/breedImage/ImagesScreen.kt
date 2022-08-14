@@ -1,17 +1,18 @@
 package com.near.presentation.breedImage
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -19,23 +20,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.AsyncImage
 import com.near.domain.model.Breed
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun ImagesRoute(
     modifier: Modifier = Modifier,
     viewModel: ImagesViewModel = viewModel(),
     navigateToFavorites: () -> Unit,
-    navigateToImages: (String) -> Unit,
 ) {
-    val uiState by viewModel.ImagesUiState.collectAsState()
+    val uiState by viewModel.imagesUiState.collectAsStateWithLifecycle()
 
     ImagesScreen(
         modifier = modifier,
         uiState = uiState,
         navigateToFavorites = navigateToFavorites,
-        navigateToImages = navigateToImages
     )
 }
 
@@ -44,7 +47,6 @@ fun ImagesScreen(
     modifier: Modifier,
     uiState: ImagesUiState,
     navigateToFavorites: () -> Unit,
-    navigateToImages: (String) -> Unit,
 ) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
@@ -63,7 +65,7 @@ fun ImagesScreen(
             ) {
                 Image(
                     imageVector = Icons.Default.Favorite,
-                    contentDescription = "support",
+                    contentDescription = null,
                     Modifier
                         .clickable {
                             navigateToFavorites()
@@ -79,39 +81,40 @@ fun ImagesScreen(
             ImagesUiState.Loading -> {}
             is ImagesUiState.Failed -> {}
             is ImagesUiState.Success -> {
-                ImagesContent(modifier, uiState,navigateToImages)
+                ImagesContent(modifier, uiState)
             }
         }
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ImagesContent(
     modifier: Modifier,
     uiState: ImagesUiState.Success,
-    navigateToImages: (String) -> Unit
 ) {
-    LazyColumn {
-        items(uiState.Images) {
-            BreedItem(it, modifier,navigateToImages)
+    LazyVerticalGrid(cells = GridCells.Fixed(5)) {
+        items(uiState.urls) {
+            ImageItem(it, modifier)
         }
     }
 }
 
 @Composable
-fun BreedItem(breed: Breed, modifier: Modifier = Modifier, onClicked: (String) -> Unit) {
+fun ImageItem(url: String,isBookmarked:Boolean, modifier: Modifier = Modifier, onBookmarked: (String) -> Unit) {
     Card(
         shape = RoundedCornerShape(8.dp),
-        backgroundColor = MaterialTheme.colors.surface, modifier = modifier.clickable { onClicked(breed.name) }
+        backgroundColor = MaterialTheme.colors.surface,
     ) {
         Column(
             modifier = modifier.height(200.dp).padding(16.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = breed.name,
-                style = MaterialTheme.typography.h4
+            BookmarkButton(isBookmarked, {onBookmarked(url)},modifier.align(Alignment.Start).padding(8.dp))
+            AsyncImage(
+                model = url,
+                contentDescription = null
             )
         }
     }

@@ -19,8 +19,8 @@ class RemoteBreedsDatasourceImpl @Inject constructor(
             emptyList()
         }
 
-    override suspend fun getImages(breed: Breed): List<String> =
-        service.getImages(breed.name).body()?.message ?: kotlin.run { emptyList() }
+    override suspend fun getImages(breed: String): List<String> =
+        service.getImages(breed).body()?.message ?: kotlin.run { emptyList() }
 
     companion object {
         const val MESSAGE_LABEL = "message"
