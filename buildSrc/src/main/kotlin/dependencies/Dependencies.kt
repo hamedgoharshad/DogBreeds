@@ -23,11 +23,14 @@ object Libs {
         }
 
         object LifeCycle {
-            private const val version = "2.4.0"
+            private const val version = "2.6.0-alpha01"
             const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:$version"
             const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
             const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
             const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+            const val lifecycleCompose =
+                "androidx.lifecycle:lifecycle-viewmodel-compose:${version}"
+            const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-compose:${version}"
         }
 
         object Arch {
@@ -157,7 +160,6 @@ object Libs {
         private const val materialCompose = composeVersion
         private const val animVersion = composeVersion
         private const val toolingVersion = composeVersion
-        private const val lifecycleComposeVersion = "2.4.1"
         private const val uiTestJunitVersion = composeVersion
         private const val lifeCycleRunTimeKtx = "2.4.1"
         private const val arrow = "1.0.1"
@@ -170,13 +172,12 @@ object Libs {
         private const val material3Version = "1.0.0-alpha14"
         private const val hiltNavVersion = "1.0.0-alpha03"
         private const val systemUIControllerVersion = "0.17.0"
+        private const val coilVersion = "2.1.0"
 
         const val activityCompose = "androidx.activity:activity-compose:${activityComposeVersion}"
         const val material = "androidx.compose.material:material:${materialCompose}"
         const val anim = "androidx.compose.animation:animation:${animVersion}"
         const val tooling = "androidx.compose.ui:ui-tooling:${toolingVersion}"
-        const val lifecycleCompose =
-            "androidx.lifecycle:lifecycle-viewmodel-compose:${lifecycleComposeVersion}"
 
         const val uiTestJunit = "androidx.compose.ui:ui-test-junit4:${uiTestJunitVersion}"
         const val appcompatTheme =
@@ -193,6 +194,8 @@ object Libs {
         const val systemUIController =
             "com.google.accompanist:accompanist-systemuicontroller:${systemUIControllerVersion}"
         const val hiltNavigation = "androidx.hilt:hilt-navigation-compose:${hiltNavVersion}"
+        const val icons = "androidx.compose.material:material-icons-extended:${composeVersion}"
+        const val coil = "io.coil-kt:coil-compose:${coilVersion}"
     }
 
 }

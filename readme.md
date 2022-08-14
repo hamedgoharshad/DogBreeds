@@ -3,5 +3,5 @@ Shows nearby places and updates results through walking only if the location has
 ![image.png](./image.png)
 ![image-7.png](./image-7.png)
 ![image-9.png](./image-9.png)
-![image-10.png](./image-10.png)
+
 Thank you for reading !
