@@ -2,14 +2,14 @@ package com.near.repository
 
 import com.near.common.testshared.CoroutineRule
 import com.near.datasource.local.interfaces.LocalPlaceDetailDataSource
-import com.near.datasource.remote.interfaces.RemotePlaceDetailDatasource
-import com.near.mapper.PlaceDetailResponseMapper.map
 import com.google.common.truth.Truth
+import com.near.datasource.remote.interfaces.RemoteBreedsDatasource
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -24,26 +24,24 @@ class PlaceDetailRepositoryImplTest {
     private lateinit var mockLocalPlaceDetailDataSource: LocalPlaceDetailDataSource
 
     @MockK
-    private lateinit var mockRemotePlaceDetailDatasource: RemotePlaceDetailDatasource
+    private lateinit var mockRemotePlaceDetailDatasource: RemoteBreedsDatasource
 
-    private lateinit var placeDetailRepositoryImpl: PlaceDetailRepositoryImpl
+    private lateinit var placeDetailRepositoryImpl: BreedsRepositoryImpl
 
     @Before
     fun setup() {
-        placeDetailRepositoryImpl = PlaceDetailRepositoryImpl(
-            mockLocalPlaceDetailDataSource,
+        placeDetailRepositoryImpl = BreedsRepositoryImpl(
             mockRemotePlaceDetailDatasource
         )
     }
 
     @Test
-    fun `when cache is empty then request api`() {
-        val id = "id"
-        coEvery { mockLocalPlaceDetailDataSource.getPlaceDetail(id) } returns null
+    fun `when cache is empty then request api`() = runTest {
+        coEvery { mockLocalPlaceDetailDataSource.getPlaceDetail() } returns null
 
-        val result = runBlocking { placeDetailRepositoryImpl.getPlaceDetail(id) }
+        placeDetailRepositoryImpl.getAllBreeds()
 
-        coVerify { mockRemotePlaceDetailDatasource.getPlaceDetail(id) }
+        coVerify { mockRemotePlaceDetailDatasource.getAllBreeds() }
     }
 
     @Test
