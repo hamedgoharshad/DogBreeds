@@ -70,7 +70,7 @@ class NearbyRemoteMediator @Inject constructor(
                 }
             }
             val response: Response<NearbyResponse> =
-                remoteBreedsDatasource.getNearbyPlaces(loadKey)
+                remoteBreedsDatasource.getAllBreeds(loadKey)
             localNearbyDatasource.getDatabase().withTransaction {
                 if (loadType == REFRESH) {
                     remoteKeyDatasource.deleteByQuery(loadKey.latLong)

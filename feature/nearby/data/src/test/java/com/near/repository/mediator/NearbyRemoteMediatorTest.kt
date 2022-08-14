@@ -96,7 +96,7 @@ class NearbyRemoteMediatorTest {
 
     @Test
     fun `load when locationEntity is null in REFRESH state`() = runTest(standardTestDispatcher) {
-        coEvery { remoteBreedsDatasource.getNearbyPlaces(any()) } coAnswers {
+        coEvery { remoteBreedsDatasource.getAllBreeds(any()) } coAnswers {
             Response.success(null)
         }
         val response = nearbyRemoteMediator.load(
@@ -116,7 +116,7 @@ class NearbyRemoteMediatorTest {
 
     @Test
     fun `load when locationEntity is null in APPEND state`() = runTest(standardTestDispatcher) {
-        coEvery { remoteBreedsDatasource.getNearbyPlaces(any()) } coAnswers {
+        coEvery { remoteBreedsDatasource.getAllBreeds(any()) } coAnswers {
             Response.success(null)
         }
         val response = nearbyRemoteMediator.load(
@@ -137,7 +137,7 @@ class NearbyRemoteMediatorTest {
     @Test
     fun `check REFRESH state return null from api`() = runTest(standardTestDispatcher) {
         val response = Response.success(null)
-        coEvery { remoteBreedsDatasource.getNearbyPlaces(any()) } coAnswers {
+        coEvery { remoteBreedsDatasource.getAllBreeds(any()) } coAnswers {
             response as Response<NearbyResponse>
         }
 
@@ -162,7 +162,7 @@ class NearbyRemoteMediatorTest {
         val response = Response.error<Exception>(
             404, nearbyRemoteMediatorTestFixture.responseBody
         )
-        coEvery { remoteBreedsDatasource.getNearbyPlaces(any()) } coAnswers {
+        coEvery { remoteBreedsDatasource.getAllBreeds(any()) } coAnswers {
             response as Response<NearbyResponse>
         }
 

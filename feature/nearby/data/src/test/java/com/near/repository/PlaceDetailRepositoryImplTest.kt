@@ -2,7 +2,6 @@ package com.near.repository
 
 import com.near.common.testshared.CoroutineRule
 import com.near.datasource.local.interfaces.LocalPlaceDetailDataSource
-import com.near.datasource.remote.interfaces.RemotePlaceDetailDatasource
 import com.near.mapper.PlaceDetailResponseMapper.map
 import com.google.common.truth.Truth
 import io.mockk.coEvery

@@ -9,7 +9,6 @@ import android.os.IBinder
 import com.near.common.data.persistent.preference.DataStoreConstants
 import com.near.common.data.persistent.preference.GenericDataStore
 import com.near.datasource.local.interfaces.LocationDatasource
-import com.near.infrastructure.LocationTrackingService
 import com.near.mapper.mapToLocation
 import com.near.mapper.mapToString
 import dagger.hilt.android.qualifiers.ApplicationContext
