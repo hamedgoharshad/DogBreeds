@@ -5,10 +5,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.near.presentation.breedImage.navigation.ImagesDestination
-import com.near.presentation.breeds.navigation.AllBreedsDestination
-import com.near.presentation.breeds.navigation.breedsGraph
-import com.near.presentation.favorite.navigation.FavoriteDestination
+import com.near.presentation.breedImages.navigation.ImagesDestination
+import com.near.presentation.allBreeds.navigation.AllBreedsDestination
+import com.near.presentation.allBreeds.navigation.breedsGraph
+import com.near.presentation.bookmark.navigation.FavoriteDestination
 
 @Composable
 fun BreedsNavHost(

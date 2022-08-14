@@ -1,4 +1,4 @@
-package com.near.presentation.breedImage.navigation
+package com.near.presentation.breedImages.navigation
 
 import com.near.common.presentation.navigation.NavigationDestination
 

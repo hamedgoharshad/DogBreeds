@@ -28,9 +28,7 @@ abstract class UseCase<in P, R>(private val coroutineDispatcher: CoroutineDispat
                      Result.Success(it)
                 }
             }
-        } catch (e: CancellationException) {
-             Result.Canceled
-        } catch (e: HttpException) {
+        }  catch (e: HttpException) {
             val parsedError = readServerError(e)
              Result.Failure(parsedError)
         } catch (e: Exception) {

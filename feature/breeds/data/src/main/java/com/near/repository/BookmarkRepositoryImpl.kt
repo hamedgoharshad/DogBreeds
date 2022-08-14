@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class BookmarkRepositoryImpl @Inject constructor(private val bookmarkLocalDatasource: BookmarkLocalDatasource) :
     BookmarkRepository {
-    override suspend fun getBookmarks(): List<Bookmark> =
-        bookmarkLocalDatasource.getBookmarks().map { it.toDomainModel() }
+    override suspend fun getBookmarks(breed:String?): List<Bookmark> =
+        bookmarkLocalDatasource.getBookmarks(breed).map { it.toDomainModel() }
 
     override suspend fun addBookmark(bookmark: Bookmark) = bookmarkLocalDatasource.addBookmark(
         BookmarkEntity.fromDomainModel(bookmark)

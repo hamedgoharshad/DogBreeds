@@ -1,4 +1,4 @@
-package com.near.presentation.favorite.navigation
+package com.near.presentation.bookmark.navigation
 
 import com.near.common.presentation.navigation.NavigationDestination
 
