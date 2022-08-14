@@ -10,7 +10,7 @@ class BreedsRepositoryImpl @Inject constructor(private val remoteBreedsDatasourc
     override suspend fun getAllBreeds(): List<Breed> =
         remoteBreedsDatasource.getAllBreeds()
 
-    override suspend fun getImages(breed: Breed): List<String> =
+    override suspend fun getImages(breed: String): List<String> =
         remoteBreedsDatasource.getImages(breed)
 
 }

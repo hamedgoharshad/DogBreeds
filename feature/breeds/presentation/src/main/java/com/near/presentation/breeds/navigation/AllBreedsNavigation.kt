@@ -1,9 +1,12 @@
 package com.near.presentation.breeds.navigation
 
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.near.common.presentation.navigation.NavigationDestination
+import com.near.presentation.breedImage.ImagesRoute
 import com.near.presentation.breedImage.navigation.ImagesDestination
 import com.near.presentation.breeds.BreedsRoute
 import com.near.presentation.favorite.navigation.FavoriteDestination
@@ -27,11 +30,15 @@ fun NavGraphBuilder.breedsGraph(
                 navigateToImages = navigateToImages,
             )
         }
-        composable(route = ImagesDestination.destination) {
-            BreedsRoute(
-                navigateToFavorites = navigateToFavorite,
-                navigateToImages = navigateToImages,
-            )
+        composable(
+            route = "${ImagesDestination.route}/{${ImagesDestination.breedNameArg}}",
+            arguments = listOf(
+                navArgument(ImagesDestination.breedNameArg) {
+                    type = NavType.StringType
+                }
+            )) {
+            ImagesRoute(
+                navigateToFavorites = navigateToFavorite)
         }
         composable(route = FavoriteDestination.destination) {
             BreedsRoute(
