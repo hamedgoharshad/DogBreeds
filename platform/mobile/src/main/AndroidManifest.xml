@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:name="com.near.platform.mobile.NearApplication"
+        android:name="com.near.platform.mobile.BreedsApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -30,13 +30,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name="com.near.infrastructure.LocationTrackingService"
-            android:enabled="true"
-            android:exported="false"
-            tools:node="merge"
-            android:stopWithTask="true"
-            />
     </application>
 </manifest>

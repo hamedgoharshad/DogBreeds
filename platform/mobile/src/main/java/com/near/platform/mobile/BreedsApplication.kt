@@ -6,7 +6,7 @@ import timber.log.Timber
 import timber.log.Timber.DebugTree
 
 @HiltAndroidApp
-class NearApplication : Application() {
+class BreedsApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
