@@ -1,4 +1,4 @@
-package com.near.presentation.breeds.navigation
+package com.near.presentation.allBreeds.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -6,10 +6,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.near.common.presentation.navigation.NavigationDestination
-import com.near.presentation.breedImage.ImagesRoute
-import com.near.presentation.breedImage.navigation.ImagesDestination
-import com.near.presentation.breeds.BreedsRoute
-import com.near.presentation.favorite.navigation.FavoriteDestination
+import com.near.presentation.breedImages.ImagesRoute
+import com.near.presentation.breedImages.navigation.ImagesDestination
+import com.near.presentation.allBreeds.BreedsRoute
+import com.near.presentation.bookmark.navigation.FavoriteDestination
 
 object AllBreedsDestination : NavigationDestination {
     override val route = "all_breeds_route"

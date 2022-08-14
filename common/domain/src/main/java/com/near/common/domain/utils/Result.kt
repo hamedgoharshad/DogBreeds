@@ -1,5 +1,6 @@
 package com.near.common.domain.utils
 
+import com.near.common.domain.usecase.R
 import com.near.common.domain.utils.Result.*
 import kotlinx.coroutines.flow.MutableStateFlow
 
@@ -8,21 +9,18 @@ sealed class Result<out R> {
     data class Success<out T>(val data: T, val error: Exception? = null) : Result<T>()
     data class Failure(val error: Exception) : Result<Nothing>()
     object Loading : Result<Nothing>()
-    object Canceled : Result<Nothing>()
 
     override fun toString(): String {
         return when (this) {
             is Success<*> -> "Success[data=$data]"
             is Failure -> "Error[exception=$error]"
             Loading -> "Loading"
-            Canceled -> "Canceled"
         }
     }
 
     fun isLoading() = this is Loading
     fun isSuccess() = this is Success
     fun isFailure() = this is Failure
-    fun isCanceled() = this is Canceled
 }
 
 fun <R> Success<R>.bindError(suspicious: Result<R>): Success<R> {
@@ -39,9 +37,6 @@ fun <R, T> Result<R>.mapWith(mapper: (R) -> (T)): Result<T> {
         }
         this.isLoading() -> {
             Loading
-        }
-        this.isCanceled() -> {
-            return Canceled
         }
         else -> {
             Failure((this as Failure).error)
@@ -78,7 +73,6 @@ inline fun <T> Result<T>.withResult(
 ) {
     when (this) {
         Loading -> onLoading(true)
-        Canceled -> onLoading(false)
         is Failure -> {
             onLoading(false)
             onFailure(error)
@@ -101,3 +95,9 @@ val <T> Result<T>.data: T?
 
 val Result<*>.succeeded
     get() = this is Success && data != null
+
+inline fun <T:Any, R> T?.ifNullReturn(
+    onNullReturnValue: R,
+    crossinline whenIsNotNull: (T) -> R
+): R = if (this != null) whenIsNotNull(this) else onNullReturnValue
+

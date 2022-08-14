@@ -1,53 +1,61 @@
-package com.near.presentation.breeds
+package com.near.presentation.breedImages
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.near.domain.model.Breed
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
+import com.near.common.domain.model.Bookmark
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
-fun BreedsRoute(
+fun ImagesRoute(
     modifier: Modifier = Modifier,
-    viewModel: BreedsViewModel = viewModel(),
+    viewModel: ImagesViewModel = viewModel(),
     navigateToFavorites: () -> Unit,
-    navigateToImages: (String) -> Unit,
 ) {
-    val uiState by viewModel.breedsUiState.collectAsStateWithLifecycle()
-
-    BreedsScreen(
+    val uiState by viewModel.imagesUiState.collectAsStateWithLifecycle()
+    ImagesScreen(
         modifier = modifier,
         uiState = uiState,
+        viewModel.breedName,
         navigateToFavorites = navigateToFavorites,
-        navigateToImages = navigateToImages
+        viewModel::addBookmark,
     )
 }
 
 @Composable
-fun BreedsScreen(
+fun ImagesScreen(
     modifier: Modifier,
-    uiState: BreedsUiState,
+    uiState: ImagesUiState,
+    breed: String,
     navigateToFavorites: () -> Unit,
-    navigateToImages: (String) -> Unit,
+    onBookmarked: (Bookmark) -> Unit,
 ) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
@@ -66,7 +74,7 @@ fun BreedsScreen(
             ) {
                 Image(
                     imageVector = Icons.Default.Favorite,
-                    contentDescription = "support",
+                    contentDescription = null,
                     Modifier
                         .clickable {
                             navigateToFavorites()
@@ -79,42 +87,63 @@ fun BreedsScreen(
             }
         }) {
         when (uiState) {
-            BreedsUiState.Loading -> {}
-            is BreedsUiState.Failed -> {}
-            is BreedsUiState.Success -> {
-                BreedsContent(modifier, uiState,navigateToImages)
+            ImagesUiState.Loading -> {}
+            is ImagesUiState.Failed -> {}
+            is ImagesUiState.Success -> {
+                ImagesContent(modifier, uiState, breed, onBookmarked)
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun ImagesContent(
+    modifier: Modifier,
+    uiState: ImagesUiState.Success,
+    breed: String,
+    onBookmarked: (Bookmark) -> Unit
+) {
+    LazyVerticalGrid(cells = GridCells.Fixed(5)) {
+        uiState.run {
+            items(urls) {
+                ImageItem(it, bookmarks.map { it.id }.contains(it), breed, onBookmarked,modifier)
             }
         }
     }
 }
 
 @Composable
-fun BreedsContent(
-    modifier: Modifier,
-    uiState: BreedsUiState.Success,
-    navigateToImages: (String) -> Unit
+fun ImageItem(
+    url: String,
+    isBookmarked: Boolean,
+    breed: String,
+    onBookmarked: (Bookmark) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    LazyColumn {
-        items(uiState.breeds) {
-            BreedItem(it, modifier,navigateToImages)
-        }
-    }
-}
-
-@Composable
-fun BreedItem(breed: Breed, modifier: Modifier = Modifier, onClicked: (String) -> Unit) {
     Card(
         shape = RoundedCornerShape(8.dp),
-        backgroundColor = MaterialTheme.colors.surface, modifier = modifier.clickable { onClicked(breed.name) }
+        backgroundColor = MaterialTheme.colors.surface,
     ) {
         Column(
             modifier = modifier.height(200.dp).padding(16.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = breed.name,
-                style = MaterialTheme.typography.h4
+            BookmarkButton(
+                isBookmarked,
+                { onBookmarked(Bookmark(url, breed)) },
+                modifier.align(Alignment.Start).padding(8.dp)
+            )
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(url)
+                    .crossfade(true)
+                    .build(),
+                placeholder = painterResource(com.near.common.presentation.R.drawable.ic_placeholder),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.clip(CircleShape)
             )
         }
     }

@@ -10,9 +10,9 @@ import javax.inject.Inject
 class GetBookmarksUseCase @Inject constructor(
     private val bookmarkRepository: BookmarkRepository,
     @IoDispatcher ioDispatcher: CoroutineDispatcher
-) : CoroutineUseCase<Unit, List<Bookmark>>(ioDispatcher) {
-    override suspend fun execute(parameters: Unit): List<Bookmark> =
-        bookmarkRepository.getBookmarks().run {
+) : CoroutineUseCase<String?, List<Bookmark>>(ioDispatcher) {
+    override suspend fun execute(parameters: String?): List<Bookmark> =
+        bookmarkRepository.getBookmarks(parameters).run {
             if (!isEmpty()) this else throw Exception("There is nothing here")
         }
 }

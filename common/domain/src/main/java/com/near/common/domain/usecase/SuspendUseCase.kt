@@ -33,7 +33,7 @@ abstract class SuspendUseCase<in P, R>(private val coroutineDispatcher: Coroutin
                 }
             }
         } catch (e: CancellationException) {
-             Result.Canceled
+            Result.Failure(e)
         } catch (e: HttpException) {
             val parsedError = try {
                 readServerError(e)
