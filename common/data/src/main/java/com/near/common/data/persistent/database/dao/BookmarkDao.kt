@@ -2,15 +2,16 @@ package com.near.common.data.persistent.database.dao
 
 import androidx.room.*
 import com.near.common.data.persistent.database.entity.BookmarkEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BookmarkDao {
 
     @Query("SELECT * FROM bookmark")
-    fun getBookmarksByBreed(): List<BookmarkEntity> // could be flow
+    fun getBookmarksByBreed(): Flow<List<BookmarkEntity>> // could be flow
 
     @Query("SELECT * FROM bookmark WHERE bookmark.breed = :breed")
-    fun getBookmarksByBreed(breed:String): List<BookmarkEntity>
+    fun getBookmarksByBreed(breed:String): Flow<List<BookmarkEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun add(bookmarkEntity: BookmarkEntity)

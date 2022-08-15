@@ -13,6 +13,7 @@ import com.near.presentation.breedImages.navigation.ImagesDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import retrofit2.Response.error
 import java.lang.Exception
 import javax.annotation.concurrent.Immutable
 import javax.inject.Inject
@@ -20,8 +21,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ImagesViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
+    getBookmarksUseCase: GetBookmarksUseCase,
     private val getBreedImagesUseCase: GetBreedImagesUseCase,
-    private val getBookmarksUseCase: GetBookmarksUseCase,
     private val addBookmarkUseCase: AddBookmarkUseCase
 ) : ViewModel() {
 
@@ -30,7 +31,7 @@ class ImagesViewModel @Inject constructor(
     )
 
     val imagesUiState: StateFlow<ImagesUiState> = combine(
-        flow { emit(getBookmarksUseCase(breedName)) },
+        getBookmarksUseCase(breedName),
         flow { emit(getBreedImagesUseCase(breedName)) })
     { bookmarks: Result<List<Bookmark>>, images: Result<List<String>> ->
         when (images) {

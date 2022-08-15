@@ -1,4 +1,4 @@
-package com.near.presentation.breedImages
+package com.near.presentation.breedImages.component
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconToggleButton

@@ -7,8 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.near.presentation.breedImages.navigation.ImagesDestination
 import com.near.presentation.allBreeds.navigation.AllBreedsDestination
-import com.near.presentation.allBreeds.navigation.breedsGraph
 import com.near.presentation.bookmark.navigation.BookmarkDestination
+import com.near.presentation.navigation.breedsGraph
 
 @Composable
 fun BreedsNavHost(

@@ -63,6 +63,6 @@ dependencies {
     kapt(Libs.DependencyInjection.Hilt.compiler)
     kapt(Libs.AndroidX.Hilt.compiler)
 
-    addUnitTestDependencies()
+    //addUnitTestDependencies()
     addInstrumentTestDependencies()
 }

@@ -7,6 +7,7 @@ import com.near.common.domain.utils.Result
 import com.near.domain.usecase.GetBookmarksUseCase
 import com.near.presentation.allBreeds.BreedsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import java.lang.Exception
 import javax.annotation.concurrent.Immutable
@@ -14,12 +15,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(
-    private val getAllBookmarksUseCase: GetBookmarksUseCase
+    getAllBookmarksUseCase: GetBookmarksUseCase
 ) : ViewModel() {
 
-    val bookmarkUiState: StateFlow<BookmarkUiState> = flow {
-        emit(
-            when (val result = getAllBookmarksUseCase(null)) {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val bookmarkUiState: StateFlow<BookmarkUiState> =
+        getAllBookmarksUseCase(null).mapLatest { result ->
+            when (result) {
                 is Result.Success -> {
                     BookmarkUiState.Success(result.data)
                 }
@@ -28,12 +30,11 @@ class BookmarkViewModel @Inject constructor(
                 }
                 Result.Loading -> BookmarkUiState.Loading
             }
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = BookmarkUiState.Loading
         )
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5_000),
-        initialValue = BookmarkUiState.Loading
-    )
 }
 
 @Immutable

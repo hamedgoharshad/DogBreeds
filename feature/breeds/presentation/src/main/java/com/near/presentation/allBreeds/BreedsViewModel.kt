@@ -3,6 +3,7 @@ package com.near.presentation.allBreeds
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.near.common.domain.utils.Result
+import com.near.common.domain.utils.data
 import com.near.common.domain.utils.withResult
 import com.near.domain.model.Breed
 import com.near.domain.usecase.GetAllBreedsUseCase
@@ -10,6 +11,7 @@ import com.near.presentation.allBreeds.BreedsUiState.Loading
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.lang.Exception
 import javax.annotation.concurrent.Immutable
 import javax.inject.Inject
@@ -19,8 +21,9 @@ class BreedsViewModel @Inject constructor(
     private val getAllBreedsUseCase: GetAllBreedsUseCase
 ) : ViewModel() {
     val breedsUiState: StateFlow<BreedsUiState> = flow {
+        val result = getAllBreedsUseCase(Unit)
         emit(
-            when (val result = getAllBreedsUseCase(Unit)) {
+            when (result) {
                 is Result.Success -> {
                     BreedsUiState.Success(result.data)
                 }
@@ -30,6 +33,7 @@ class BreedsViewModel @Inject constructor(
                 Result.Loading -> Loading
             }
         )
+        Timber.tag("hamed").d(result.toString())
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
