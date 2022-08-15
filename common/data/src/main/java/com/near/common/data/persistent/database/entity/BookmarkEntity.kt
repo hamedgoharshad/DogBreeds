@@ -6,7 +6,6 @@ import com.near.common.domain.model.Bookmark
 
 @Entity(
     tableName = "bookmark",
-    primaryKeys = ["id"]
 )
 data class BookmarkEntity(
     @PrimaryKey

@@ -1,6 +1,6 @@
 package com.near.common.testshared
 
-import com.near.common.data.persistent.database.entity.PlaceDetailEntity
+import com.near.common.data.persistent.database.entity.BookmarkEntity
 
 class TestData {
 
@@ -10,6 +10,6 @@ class TestData {
     }
 
     val fakePlaceDetailEntity =
-        PlaceDetailEntity("fakeId", "fakeName", "catName", "12", "13", "iran", "mashhad", "ic.jpg")
+        BookmarkEntity("fakeId", "fakeName")
 
 }

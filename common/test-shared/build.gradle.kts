@@ -44,7 +44,7 @@ dependencies {
     implementation(Libs.AndroidX.Fragment.test)
     implementation(Libs.AndroidX.LifeCycle.liveData)
     implementation(Test.Espresso.core)
-    implementation(Test.Mockk.mockk)
+  //  implementation(Test.Mockk.mockk)
     implementation(Test.runner)
     implementation(Libs.AndroidX.Room.core)
     implementation(Libs.AndroidX.Room.runtime)

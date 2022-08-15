@@ -17,7 +17,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -27,14 +29,14 @@ import com.near.domain.model.Breed
 @Composable
 fun BreedsRoute(
     modifier: Modifier = Modifier,
-    viewModel: BreedsViewModel = viewModel(),
+    viewModel: BreedsViewModel = hiltViewModel(),
     navigateToFavorites: () -> Unit,
     navigateToImages: (String) -> Unit,
 ) {
     val uiState by viewModel.breedsUiState.collectAsStateWithLifecycle()
 
     BreedsScreen(
-        modifier = modifier,
+        modifier = modifier.background(Color.Red),
         uiState = uiState,
         navigateToFavorites = navigateToFavorites,
         navigateToImages = navigateToImages
@@ -81,7 +83,7 @@ fun BreedsScreen(
             BreedsUiState.Loading -> {}
             is BreedsUiState.Failed -> {}
             is BreedsUiState.Success -> {
-                BreedsContent(modifier, uiState,navigateToImages)
+                BreedsContent(modifier, uiState, navigateToImages)
             }
         }
     }
@@ -89,13 +91,13 @@ fun BreedsScreen(
 
 @Composable
 fun BreedsContent(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     uiState: BreedsUiState.Success,
     navigateToImages: (String) -> Unit
 ) {
-    LazyColumn {
+    LazyColumn(Modifier.padding(8.dp)) {
         items(uiState.breeds) {
-            BreedItem(it, modifier,navigateToImages)
+            BreedItem(it, modifier, navigateToImages)
         }
     }
 }
@@ -104,10 +106,16 @@ fun BreedsContent(
 fun BreedItem(breed: Breed, modifier: Modifier = Modifier, onClicked: (String) -> Unit) {
     Card(
         shape = RoundedCornerShape(8.dp),
-        backgroundColor = MaterialTheme.colors.surface, modifier = modifier.clickable { onClicked(breed.name) }
+        backgroundColor = MaterialTheme.colors.surface,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+            .clickable { onClicked(breed.name) }, elevation = 5.dp
     ) {
         Column(
-            modifier = modifier.height(200.dp).padding(16.dp),
+            modifier = modifier
+                .wrapContentHeight(Alignment.CenterVertically)
+                .padding(16.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -116,5 +124,22 @@ fun BreedItem(breed: Breed, modifier: Modifier = Modifier, onClicked: (String) -
                 style = MaterialTheme.typography.h4
             )
         }
+    }
+}
+
+@Preview
+@Composable
+fun BreedPrev() {
+    MaterialTheme {
+        BreedsContent(uiState = BreedsUiState.Success(
+            listOf(
+                Breed("hadm"),
+                Breed("hadm"),
+                Breed("hadm"),
+                Breed("hadm"),
+                Breed("hadm"),
+                Breed("hadm"),
+            )
+        ), navigateToImages = {})
     }
 }

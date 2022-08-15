@@ -38,6 +38,10 @@ android {
     }
     buildFeatures {
         dataBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.3.0"
     }
 }
 
@@ -69,12 +73,14 @@ dependencies {
         api(navigation)
         api(icons)
         api(coil)
+        api(hiltNavigation)
     }
     LifeCycle.run {
         api(lifecycleCompose)
         api(lifecycleRuntime)
     }
     api(Libs.ImageUtils.coil)
+
 
     implementation(Libs.DependencyInjection.Hilt.core)
     kapt(Libs.DependencyInjection.Hilt.compiler)

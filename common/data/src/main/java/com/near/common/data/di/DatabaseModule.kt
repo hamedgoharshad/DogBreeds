@@ -3,7 +3,7 @@ package com.near.common.data.di
 import android.content.Context
 import androidx.room.Room
 import com.near.common.data.BuildConfig
-import com.near.common.data.persistent.database.NearbyDatabase
+import com.near.common.data.persistent.database.BookmarkDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,20 +19,11 @@ class DatabaseModule {
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
         context,
-        NearbyDatabase::class.java,
+        BookmarkDatabase::class.java,
         BuildConfig.DATABASE_NAME
     ).build()
 
     @Provides
     @Singleton
-    fun providePlaceDao(appDatabase: NearbyDatabase) = appDatabase.getPlaceDao()
-
-    @Provides
-    @Singleton
-    fun providePlaceDetailDao(appDatabase: NearbyDatabase) = appDatabase.getPlaceDetailDao()
-
-    @Provides
-    @Singleton
-    fun provideRemoteKeyDao(appDatabase: NearbyDatabase) = appDatabase.getRemoteKeyDao()
-
+    fun providePlaceDao(appDatabase: BookmarkDatabase) = appDatabase.getBookmarkDao()
 }

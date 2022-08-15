@@ -24,19 +24,21 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.near.common.domain.model.Bookmark
+import com.near.presentation.breedImages.component.BookmarkButton
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun ImagesRoute(
     modifier: Modifier = Modifier,
-    viewModel: ImagesViewModel = viewModel(),
+    viewModel: ImagesViewModel = hiltViewModel(),
     navigateToFavorites: () -> Unit,
 ) {
     val uiState by viewModel.imagesUiState.collectAsStateWithLifecycle()
@@ -104,10 +106,16 @@ fun ImagesContent(
     breed: String,
     onBookmarked: (Bookmark) -> Unit
 ) {
-    LazyVerticalGrid(cells = GridCells.Fixed(5)) {
+    LazyVerticalGrid(cells = GridCells.Fixed(2),Modifier.padding(8.dp)) {
         uiState.run {
-            items(urls) {
-                ImageItem(it, bookmarks.map { it.id }.contains(it), breed, onBookmarked,modifier)
+            items(urls) { url ->
+                ImageItem(
+                    url,
+                    bookmarks.map { bookmark -> bookmark.id }.contains(url),
+                    breed,
+                    onBookmarked,
+                    modifier
+                )
             }
         }
     }
@@ -123,17 +131,21 @@ fun ImageItem(
 ) {
     Card(
         shape = RoundedCornerShape(8.dp),
-        backgroundColor = MaterialTheme.colors.surface,
+        backgroundColor = MaterialTheme.colors.surface, modifier = Modifier.padding(8.dp)
     ) {
         Column(
-            modifier = modifier.height(200.dp).padding(16.dp),
+            modifier = modifier
+                .height(200.dp)
+                .padding(16.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             BookmarkButton(
                 isBookmarked,
                 { onBookmarked(Bookmark(url, breed)) },
-                modifier.align(Alignment.Start).padding(8.dp)
+                modifier
+                    .align(Alignment.Start)
+                    .padding(2.dp)
             )
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
@@ -147,4 +159,21 @@ fun ImageItem(
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun ImagePrev() {
+    ImagesContent(
+        modifier = Modifier, uiState = ImagesUiState.Success(
+            listOf("fff", "fff", "fff", "fff", "fff"), listOf(
+                Bookmark("f", "fefe"),
+                Bookmark("f", "fefe"),
+                Bookmark("f", "fefe"),
+                Bookmark("f", "fefe"),
+                Bookmark("f", "fefe"),
+                Bookmark("f", "fefe"),
+            )
+        ), breed = "dfe", onBookmarked = {})
+
 }

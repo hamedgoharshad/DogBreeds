@@ -47,6 +47,10 @@ android {
     }
     buildFeatures {
         dataBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.3.0"
     }
 }
 dependencies {
@@ -59,6 +63,6 @@ dependencies {
     kapt(Libs.DependencyInjection.Hilt.compiler)
     kapt(Libs.AndroidX.Hilt.compiler)
 
-    addUnitTestDependencies()
+    //addUnitTestDependencies()
     addInstrumentTestDependencies()
 }
