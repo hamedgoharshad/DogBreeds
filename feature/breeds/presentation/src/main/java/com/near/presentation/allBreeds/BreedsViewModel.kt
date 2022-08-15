@@ -18,22 +18,22 @@ import javax.inject.Inject
 class BreedsViewModel @Inject constructor(
     private val getAllBreedsUseCase: GetAllBreedsUseCase
 ) : ViewModel() {
-    val breedsUiState: StateFlow<com.near.presentation.bookmark.BreedsUiState> = flow {
+    val breedsUiState: StateFlow<BreedsUiState> = flow {
         emit(
             when (val result = getAllBreedsUseCase(Unit)) {
                 is Result.Success -> {
-                    com.near.presentation.bookmark.BreedsUiState.Success(result.data)
+                    BreedsUiState.Success(result.data)
                 }
                 is Result.Failure -> {
-                    com.near.presentation.bookmark.BreedsUiState.Failed(Exception(result.error))
+                    BreedsUiState.Failed(Exception(result.error))
                 }
-                Result.Loading -> com.near.presentation.bookmark.BreedsUiState.Loading
+                Result.Loading -> Loading
             }
         )
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
-        initialValue = com.near.presentation.bookmark.BreedsUiState.Loading
+        initialValue = Loading
     )
 }
 

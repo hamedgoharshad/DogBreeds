@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -27,7 +28,7 @@ import com.near.domain.model.Breed
 @Composable
 fun BreedsRoute(
     modifier: Modifier = Modifier,
-    viewModel: BreedsViewModel = viewModel(),
+    viewModel: BreedsViewModel = hiltViewModel(),
     navigateToFavorites: () -> Unit,
     navigateToImages: (String) -> Unit,
 ) {
@@ -81,7 +82,7 @@ fun BreedsScreen(
             BreedsUiState.Loading -> {}
             is BreedsUiState.Failed -> {}
             is BreedsUiState.Success -> {
-                BreedsContent(modifier, uiState,navigateToImages)
+                BreedsContent(modifier, uiState, navigateToImages)
             }
         }
     }
@@ -95,7 +96,7 @@ fun BreedsContent(
 ) {
     LazyColumn {
         items(uiState.breeds) {
-            BreedItem(it, modifier,navigateToImages)
+            BreedItem(it, modifier, navigateToImages)
         }
     }
 }
@@ -104,7 +105,8 @@ fun BreedsContent(
 fun BreedItem(breed: Breed, modifier: Modifier = Modifier, onClicked: (String) -> Unit) {
     Card(
         shape = RoundedCornerShape(8.dp),
-        backgroundColor = MaterialTheme.colors.surface, modifier = modifier.clickable { onClicked(breed.name) }
+        backgroundColor = MaterialTheme.colors.surface,
+        modifier = modifier.clickable { onClicked(breed.name) }
     ) {
         Column(
             modifier = modifier.height(200.dp).padding(16.dp),

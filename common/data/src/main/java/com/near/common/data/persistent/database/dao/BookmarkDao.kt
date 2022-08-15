@@ -7,10 +7,10 @@ import com.near.common.data.persistent.database.entity.BookmarkEntity
 interface BookmarkDao {
 
     @Query("SELECT * FROM bookmark")
-    fun getAllBookmarks(): List<BookmarkEntity> // could be flow
+    fun getBookmarksByBreed(): List<BookmarkEntity> // could be flow
 
     @Query("SELECT * FROM bookmark WHERE bookmark.breed = :breed")
-    fun getAllBookmarks(breed:String): List<BookmarkEntity>
+    fun getBookmarksByBreed(breed:String): List<BookmarkEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun add(bookmarkEntity: BookmarkEntity)

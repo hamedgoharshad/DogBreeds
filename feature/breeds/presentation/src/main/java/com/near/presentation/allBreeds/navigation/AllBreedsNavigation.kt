@@ -9,7 +9,8 @@ import com.near.common.presentation.navigation.NavigationDestination
 import com.near.presentation.breedImages.ImagesRoute
 import com.near.presentation.breedImages.navigation.ImagesDestination
 import com.near.presentation.allBreeds.BreedsRoute
-import com.near.presentation.bookmark.navigation.FavoriteDestination
+import com.near.presentation.bookmark.BookmarkRoute
+import com.near.presentation.bookmark.navigation.BookmarkDestination
 
 object AllBreedsDestination : NavigationDestination {
     override val route = "all_breeds_route"
@@ -38,13 +39,11 @@ fun NavGraphBuilder.breedsGraph(
                 }
             )) {
             ImagesRoute(
-                navigateToFavorites = navigateToFavorite)
-        }
-        composable(route = FavoriteDestination.destination) {
-            BreedsRoute(
-                navigateToFavorites = navigateToFavorite,
-                navigateToImages = navigateToImages,
+                navigateToFavorites = navigateToFavorite
             )
+        }
+        composable(route = BookmarkDestination.destination) {
+            BookmarkRoute()
         }
     }
 }

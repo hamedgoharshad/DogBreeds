@@ -25,6 +25,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -36,7 +37,7 @@ import com.near.common.domain.model.Bookmark
 @Composable
 fun ImagesRoute(
     modifier: Modifier = Modifier,
-    viewModel: ImagesViewModel = viewModel(),
+    viewModel: ImagesViewModel = hiltViewModel(),
     navigateToFavorites: () -> Unit,
 ) {
     val uiState by viewModel.imagesUiState.collectAsStateWithLifecycle()

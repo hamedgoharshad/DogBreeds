@@ -8,7 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.near.presentation.breedImages.navigation.ImagesDestination
 import com.near.presentation.allBreeds.navigation.AllBreedsDestination
 import com.near.presentation.allBreeds.navigation.breedsGraph
-import com.near.presentation.bookmark.navigation.FavoriteDestination
+import com.near.presentation.bookmark.navigation.BookmarkDestination
 
 @Composable
 fun BreedsNavHost(
@@ -22,7 +22,7 @@ fun BreedsNavHost(
         modifier = modifier,
     ) {
         breedsGraph(
-            navigateToFavorite = { navController.navigate(FavoriteDestination.route) },
+            navigateToFavorite = { navController.navigate(BookmarkDestination.route) },
             navigateToImages = { navController.navigate("${ImagesDestination.route}/$it") },
         )
     }

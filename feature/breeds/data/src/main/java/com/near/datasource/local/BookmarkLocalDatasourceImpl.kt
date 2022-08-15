@@ -10,7 +10,7 @@ class BookmarkLocalDatasourceImpl @Inject constructor(
 ) : BookmarkLocalDatasource {
 
     override suspend fun getBookmarks(breed: String?): List<BookmarkEntity> =
-        if (breed.isNullOrBlank()) bookmarkDao.getAllBookmarks() else bookmarkDao.getAllBookmarks(breed)
+        if (breed.isNullOrBlank()) bookmarkDao.getBookmarksByBreed() else bookmarkDao.getBookmarksByBreed(breed)
 
     override suspend fun addBookmark(bookmarkEntity: BookmarkEntity) =
         bookmarkDao.add(bookmarkEntity)

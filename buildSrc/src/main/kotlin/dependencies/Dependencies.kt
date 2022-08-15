@@ -70,7 +70,6 @@ object Libs {
             const val work = "androidx.hilt:hilt-work:$version"
             const val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:$version"
             const val compiler = "androidx.hilt:hilt-compiler:$version"
-            const val composeNavigation = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
         }
 
         object Work {
@@ -170,7 +169,7 @@ object Libs {
         private const val constraintLayoutVersion = "1.0.1"
         private const val navVersion = "2.5.0"
         private const val material3Version = "1.0.0-alpha14"
-        private const val hiltNavVersion = "1.0.0-alpha03"
+        private const val hiltNavVersion = "1.0.0"
         private const val systemUIControllerVersion = "0.17.0"
         private const val coilVersion = "2.1.0"
 

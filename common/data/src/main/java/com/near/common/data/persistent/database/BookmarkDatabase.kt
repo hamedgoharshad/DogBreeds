@@ -12,6 +12,6 @@ import com.near.common.data.persistent.database.entity.BookmarkEntity
     version =1,
     exportSchema = true
 )
-abstract class NearbyDatabase : RoomDatabase() {
+abstract class BookmarkDatabase : RoomDatabase() {
     abstract fun getBookmarkDao(): BookmarkDao
 }
