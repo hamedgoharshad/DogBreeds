@@ -17,28 +17,34 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.near.common.presentation.compose.component.DotsTyping
+import com.near.common.presentation.compose.component.FailureScreen
+import com.near.common.presentation.compose.component.LoadingScreen
 import com.near.domain.model.Breed
+import com.near.presentation.R
+import java.lang.Exception
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun BreedsRoute(
     modifier: Modifier = Modifier,
     viewModel: BreedsViewModel = hiltViewModel(),
-    navigateToFavorites: () -> Unit,
+    navigateToBookmark: () -> Unit,
     navigateToImages: (String) -> Unit,
 ) {
     val uiState by viewModel.breedsUiState.collectAsStateWithLifecycle()
 
     BreedsScreen(
-        modifier = modifier.background(Color.Red),
+        modifier = modifier,
         uiState = uiState,
-        navigateToFavorites = navigateToFavorites,
+        navigateToBookmark = navigateToBookmark,
         navigateToImages = navigateToImages
     )
 }
@@ -47,7 +53,7 @@ fun BreedsRoute(
 fun BreedsScreen(
     modifier: Modifier,
     uiState: BreedsUiState,
-    navigateToFavorites: () -> Unit,
+    navigateToBookmark: () -> Unit,
     navigateToImages: (String) -> Unit,
 ) {
     val scaffoldState = rememberScaffoldState()
@@ -70,22 +76,26 @@ fun BreedsScreen(
                     contentDescription = "support",
                     Modifier
                         .clickable {
-                            navigateToFavorites()
+                            navigateToBookmark()
                         }
                         .fillMaxHeight()
                         .aspectRatio(1f)
                         .padding(8.dp),
-                    colorFilter = ColorFilter.lighting(Color.White, Color.White)
+                    colorFilter = ColorFilter.lighting(Color.Red, Color.Red)
                 )
             }
         }) {
-        when (uiState) {
-            BreedsUiState.Loading -> {}
-            is BreedsUiState.Failed -> {}
-            is BreedsUiState.Success -> {
-                BreedsContent(modifier, uiState, navigateToImages)
-            }
-        }
+         when (uiState) {
+             BreedsUiState.Loading -> {
+                 LoadingScreen()
+             }
+             is BreedsUiState.Failed -> {
+                 FailureScreen(uiState.exception.message?: String())
+             }
+             is BreedsUiState.Success -> {
+                 BreedsContent(modifier, uiState, navigateToImages)
+             }
+         }
     }
 }
 
@@ -106,7 +116,7 @@ fun BreedsContent(
 fun BreedItem(breed: Breed, modifier: Modifier = Modifier, onClicked: (String) -> Unit) {
     Card(
         shape = RoundedCornerShape(8.dp),
-        backgroundColor = MaterialTheme.colors.surface,
+        backgroundColor = MaterialTheme.colors.onSurface.copy(alpha = .1f),
         modifier = modifier
             .fillMaxWidth()
             .padding(8.dp)

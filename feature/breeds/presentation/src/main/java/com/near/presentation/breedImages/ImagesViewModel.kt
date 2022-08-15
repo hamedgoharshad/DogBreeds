@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.near.common.domain.model.Bookmark
 import com.near.common.domain.utils.*
+import com.near.domain.model.Breed
 import com.near.domain.usecase.AddBookmarkUseCase
 import com.near.domain.usecase.GetBookmarksUseCase
 import com.near.domain.usecase.GetBreedImagesUseCase
@@ -38,7 +39,8 @@ class ImagesViewModel @Inject constructor(
             is Result.Success -> {
                 ImagesUiState.Success(
                     images.successOr(emptyList()),
-                    bookmarks.successOr(emptyList())
+                    bookmarks.successOr(emptyList()),
+                    Breed(breedName)
                 )
             }
             is Result.Failure -> {
@@ -64,6 +66,8 @@ class ImagesViewModel @Inject constructor(
 @Immutable
 sealed class ImagesUiState {
     object Loading : ImagesUiState()
-    data class Success(val urls: List<String>, val bookmarks: List<Bookmark>) : ImagesUiState()
+    data class Success(val urls: List<String>, val bookmarks: List<Bookmark>, val breed: Breed) :
+        ImagesUiState()
+
     data class Failed(val exception: Exception) : ImagesUiState()
 }

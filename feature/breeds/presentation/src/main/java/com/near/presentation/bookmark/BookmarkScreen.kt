@@ -1,34 +1,36 @@
 package com.near.presentation.bookmark
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.rememberScaffoldState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.near.common.domain.utils.ifNullReturn
 import com.near.common.presentation.R
+import com.near.common.presentation.compose.component.FailureScreen
+import com.near.common.presentation.compose.component.LoadingScreen
+import timber.log.Timber
+import java.util.Locale.filter
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
@@ -40,32 +42,58 @@ fun BookmarkRoute(
 
     BookmarkScreen(
         modifier = modifier,
-        uiState = uiState
+        uiState = uiState,
+        viewModel::onFiltered
     )
 }
 
 @Composable
 fun BookmarkScreen(
     modifier: Modifier,
-    uiState: BookmarkUiState
+    uiState: BookmarkUiState,
+    onFiltered: (String) -> Unit
 ) {
     when (uiState) {
-        BookmarkUiState.Loading -> {}
-        is BookmarkUiState.Failed -> {}
+        BookmarkUiState.Loading -> {
+            LoadingScreen()
+        }
+        is BookmarkUiState.Failed -> {
+            FailureScreen(uiState.exception.message ?: String())
+        }
         is BookmarkUiState.Success -> {
-            BookmarkContent(modifier, uiState)
+            Column(Modifier.fillMaxSize()) {
+                if (uiState.bookmarks.isNotEmpty()) {
+                    Surface(
+                        Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight(.1f)
+                    ) {
+                        FilterDropDown(
+                            uiState.bookmarks.map { it.breed }.distinct(),
+                            onFiltered
+                        )
+                    }
+                }
+                Timber.tag("hamed").d(uiState.toString())
+                BookmarkContent(modifier, uiState)
+            }
         }
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun BookmarkContent(
     modifier: Modifier,
     uiState: BookmarkUiState.Success,
 ) {
-    LazyColumn {
-        items(uiState.bookmarks) {
-            BookmarkItem(it.id, it.breed, modifier)
+    LazyVerticalGrid(cells = GridCells.Fixed(3), Modifier.padding(4.dp)) {
+        uiState.run {
+            val filtered =
+                filter.ifNullReturn(bookmarks) { bookmarks.filter { it.breed == filter } }
+            items(filtered) {
+                BookmarkItem(it.id, it.breed, modifier)
+            }
         }
     }
 }
@@ -74,24 +102,24 @@ fun BookmarkContent(
 fun BookmarkItem(
     url: String,
     breed: String,
-    //onRemoved: (Bookmark) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
-        shape = RoundedCornerShape(8.dp),
-        backgroundColor = MaterialTheme.colors.surface,
+        shape = RoundedCornerShape(2.dp),
+        backgroundColor = MaterialTheme.colors.surface, modifier = Modifier.padding(4.dp)
     ) {
         Column(
-            modifier = modifier.height(200.dp).padding(16.dp),
+            modifier = modifier
+                .height(200.dp)
+                .padding(4.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            /*RemoveButton(
-                isBookmarked,
-                { onBookmarked(Bookmark(url, breed)) },
-                modifier.align(Alignment.Start).padding(8.dp)
-            )*/
-            Text(text = breed)
+            Text(
+                text = breed,
+                modifier = Modifier.padding(vertical = 8.dp),
+                style = MaterialTheme.typography.h6
+            )
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(url)
@@ -105,3 +133,52 @@ fun BookmarkItem(
         }
     }
 }
+
+@Composable
+fun FilterDropDown(
+    items: List<String>,
+    onFiltered: (String) -> Unit
+) {
+    var expanded by remember { mutableStateOf(false) }
+    var selected by remember { mutableStateOf("all") }
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.TopStart)
+    ) {
+        Button(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+                .background(
+                    Color.Green.copy(alpha = .2f)
+                ), onClick = { expanded = true }
+        ) {
+            Text(
+                text = selected, style = MaterialTheme.typography.h5, textAlign = TextAlign.Center
+            )
+        }
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(
+                    MaterialTheme.colors.primary.copy(alpha = .3f)
+                )
+        ) {
+            for (breed in items)
+                DropdownMenuItem(onClick = {
+                    selected = breed
+                    onFiltered(
+                        selected
+                    )
+                    expanded = false
+                }) {
+                    Text(text = breed)
+                }
+        }
+    }
+}
+
+

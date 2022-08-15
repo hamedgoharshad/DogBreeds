@@ -18,7 +18,7 @@ fun NavGraphBuilder.breedsGraph(
 ) {
     composable(route = AllBreedsDestination.route) {
         BreedsRoute(
-            navigateToFavorites = navigateToFavorite,
+            navigateToBookmark = navigateToFavorite,
             navigateToImages = navigateToImages,
         )
     }
@@ -30,7 +30,7 @@ fun NavGraphBuilder.breedsGraph(
             }
         )) {
         ImagesRoute(
-            navigateToFavorites = navigateToFavorite
+            navigateToBookmark = navigateToFavorite
         )
     }
     composable(route = BookmarkDestination.route) {
