@@ -17,11 +17,13 @@ class RemoteBreedsDatasourceImpl @Inject constructor(
             val message = JSONObject(jsonObject.string()).getJSONObject(MESSAGE_LABEL)
             message.keys().forEach { key: String ->
                 allBreedsList.add(Breed(key))
+                /*
+                // for subBreeds :
                 message.getJSONArray(key).let { jsonArray: JSONArray ->
                         for (i in 0 until jsonArray.length()) {
                             allBreedsList.add(Breed(jsonArray.getString(i)))
                         }
-                }
+                }*/
             }
             allBreedsList.toList()
         }

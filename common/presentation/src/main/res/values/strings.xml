@@ -1,3 +1,4 @@
 <resources>
+ <string name="error_msg">Oops! Something got wrong : </string>
 
  </resources>

@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -32,6 +33,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.near.common.domain.model.Bookmark
+import com.near.domain.model.Breed
 import com.near.presentation.breedImages.component.BookmarkButton
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
@@ -39,14 +41,13 @@ import com.near.presentation.breedImages.component.BookmarkButton
 fun ImagesRoute(
     modifier: Modifier = Modifier,
     viewModel: ImagesViewModel = hiltViewModel(),
-    navigateToFavorites: () -> Unit,
+    navigateToBookmark: () -> Unit,
 ) {
     val uiState by viewModel.imagesUiState.collectAsStateWithLifecycle()
     ImagesScreen(
         modifier = modifier,
         uiState = uiState,
-        viewModel.breedName,
-        navigateToFavorites = navigateToFavorites,
+        navigateToBookmark = navigateToBookmark,
         viewModel::addBookmark,
     )
 }
@@ -55,8 +56,7 @@ fun ImagesRoute(
 fun ImagesScreen(
     modifier: Modifier,
     uiState: ImagesUiState,
-    breed: String,
-    navigateToFavorites: () -> Unit,
+    navigateToBookmark: () -> Unit,
     onBookmarked: (Bookmark) -> Unit,
 ) {
     val scaffoldState = rememberScaffoldState()
@@ -79,20 +79,26 @@ fun ImagesScreen(
                     contentDescription = null,
                     Modifier
                         .clickable {
-                            navigateToFavorites()
+                            navigateToBookmark()
                         }
                         .fillMaxHeight()
                         .aspectRatio(1f)
                         .padding(8.dp),
-                    colorFilter = ColorFilter.lighting(Color.White, Color.White)
+                    colorFilter = ColorFilter.lighting(Color.Red, Color.Red)
                 )
+                if (uiState is ImagesUiState.Success)
+                    Text(
+                        text = uiState.breed.name,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxSize(), style = MaterialTheme.typography.h4
+                    )
             }
         }) {
         when (uiState) {
             ImagesUiState.Loading -> {}
             is ImagesUiState.Failed -> {}
             is ImagesUiState.Success -> {
-                ImagesContent(modifier, uiState, breed, onBookmarked)
+                ImagesContent(modifier, uiState, onBookmarked)
             }
         }
     }
@@ -103,16 +109,15 @@ fun ImagesScreen(
 fun ImagesContent(
     modifier: Modifier,
     uiState: ImagesUiState.Success,
-    breed: String,
     onBookmarked: (Bookmark) -> Unit
 ) {
-    LazyVerticalGrid(cells = GridCells.Fixed(2),Modifier.padding(8.dp)) {
+    LazyVerticalGrid(cells = GridCells.Fixed(2), Modifier.padding(8.dp)) {
         uiState.run {
             items(urls) { url ->
                 ImageItem(
                     url,
                     bookmarks.map { bookmark -> bookmark.id }.contains(url),
-                    breed,
+                    breed.name,
                     onBookmarked,
                     modifier
                 )
@@ -130,8 +135,8 @@ fun ImageItem(
     modifier: Modifier = Modifier,
 ) {
     Card(
-        shape = RoundedCornerShape(8.dp),
-        backgroundColor = MaterialTheme.colors.surface, modifier = Modifier.padding(8.dp)
+        shape = RoundedCornerShape(2.dp),
+        backgroundColor = MaterialTheme.colors.surface, modifier = Modifier.padding(4.dp)
     ) {
         Column(
             modifier = modifier
@@ -154,8 +159,8 @@ fun ImageItem(
                     .build(),
                 placeholder = painterResource(com.near.common.presentation.R.drawable.ic_placeholder),
                 contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.clip(CircleShape)
+                contentScale = ContentScale.None,
+                modifier = Modifier.fillMaxSize().clip(RoundedCornerShape(8.dp))
             )
         }
     }
@@ -173,7 +178,7 @@ fun ImagePrev() {
                 Bookmark("f", "fefe"),
                 Bookmark("f", "fefe"),
                 Bookmark("f", "fefe"),
-            )
-        ), breed = "dfe", onBookmarked = {})
+            ), Breed("")
+        ), onBookmarked = {})
 
 }

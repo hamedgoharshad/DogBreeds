@@ -1,6 +1,5 @@
 package com.near.common.domain.utils
 
-import com.near.common.domain.usecase.R
 import com.near.common.domain.utils.Result.*
 import kotlinx.coroutines.flow.MutableStateFlow
 
@@ -98,6 +97,6 @@ val Result<*>.succeeded
 
 inline fun <T:Any, R> T?.ifNullReturn(
     onNullReturnValue: R,
-    crossinline whenIsNotNull: (T) -> R
-): R = if (this != null) whenIsNotNull(this) else onNullReturnValue
+    crossinline `else`: (T) -> R
+): R = if (this != null) `else`(this) else onNullReturnValue
 
