@@ -7,6 +7,7 @@ import com.near.common.domain.model.Bookmark
 import com.near.common.domain.utils.*
 import com.near.domain.model.Breed
 import com.near.domain.usecase.AddBookmarkUseCase
+import com.near.domain.usecase.DeleteBookmarksUseCase
 import com.near.domain.usecase.GetBookmarksUseCase
 import com.near.domain.usecase.GetBreedImagesUseCase
 import com.near.presentation.breedImages.ImagesUiState.Loading
@@ -24,10 +25,11 @@ class ImagesViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     getBookmarksUseCase: GetBookmarksUseCase,
     private val getBreedImagesUseCase: GetBreedImagesUseCase,
-    private val addBookmarkUseCase: AddBookmarkUseCase
+    private val addBookmarkUseCase: AddBookmarkUseCase,
+    private val deleteBookmarksUseCase: DeleteBookmarksUseCase
 ) : ViewModel() {
 
-    val breedName: String = checkNotNull(
+    private val breedName: String = checkNotNull(
         savedStateHandle[ImagesDestination.breedNameArg]
     )
 
@@ -61,11 +63,20 @@ class ImagesViewModel @Inject constructor(
             addBookmarkUseCase(bookmark)
         }
     }
+
+    fun deleteBookmark(bookmark: Bookmark) {
+        viewModelScope.launch {
+            deleteBookmarksUseCase(bookmark)
+        }
+    }
+
+
 }
 
 @Immutable
 sealed class ImagesUiState {
     object Loading : ImagesUiState()
+
     data class Success(val urls: List<String>, val bookmarks: List<Bookmark>, val breed: Breed) :
         ImagesUiState()
 
