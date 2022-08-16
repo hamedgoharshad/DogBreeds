@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -33,7 +32,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.near.common.domain.model.Bookmark
+import com.near.common.presentation.compose.component.FailureScreen
+import com.near.common.presentation.compose.component.LoadingScreen
 import com.near.domain.model.Breed
+import com.near.presentation.bookmark.BookmarkUiState
 import com.near.presentation.breedImages.component.BookmarkButton
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
@@ -49,6 +51,7 @@ fun ImagesRoute(
         uiState = uiState,
         navigateToBookmark = navigateToBookmark,
         viewModel::addBookmark,
+        viewModel::deleteBookmark,
     )
 }
 
@@ -57,7 +60,8 @@ fun ImagesScreen(
     modifier: Modifier,
     uiState: ImagesUiState,
     navigateToBookmark: () -> Unit,
-    onBookmarked: (Bookmark) -> Unit,
+    onBookmark: (Bookmark) -> Unit,
+    onDeleteBookmark: (Bookmark) -> Unit,
 ) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
@@ -95,10 +99,14 @@ fun ImagesScreen(
             }
         }) {
         when (uiState) {
-            ImagesUiState.Loading -> {}
-            is ImagesUiState.Failed -> {}
+            ImagesUiState.Loading -> {
+                LoadingScreen()
+            }
+            is ImagesUiState.Failed -> {
+                FailureScreen(uiState.exception.message ?: String())
+            }
             is ImagesUiState.Success -> {
-                ImagesContent(modifier, uiState, onBookmarked)
+                ImagesContent(modifier, uiState, onBookmark, onDeleteBookmark)
             }
         }
     }
@@ -109,7 +117,8 @@ fun ImagesScreen(
 fun ImagesContent(
     modifier: Modifier,
     uiState: ImagesUiState.Success,
-    onBookmarked: (Bookmark) -> Unit
+    onBookmark: (Bookmark) -> Unit,
+    onDeleteBookmark: (Bookmark) -> Unit,
 ) {
     LazyVerticalGrid(cells = GridCells.Fixed(2), Modifier.padding(8.dp)) {
         uiState.run {
@@ -118,7 +127,8 @@ fun ImagesContent(
                     url,
                     bookmarks.map { bookmark -> bookmark.id }.contains(url),
                     breed.name,
-                    onBookmarked,
+                    onBookmark,
+                    onDeleteBookmark,
                     modifier
                 )
             }
@@ -131,7 +141,8 @@ fun ImageItem(
     url: String,
     isBookmarked: Boolean,
     breed: String,
-    onBookmarked: (Bookmark) -> Unit,
+    onBookmark: (Bookmark) -> Unit,
+    onDeleteBookmark: (Bookmark) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -147,7 +158,11 @@ fun ImageItem(
         ) {
             BookmarkButton(
                 isBookmarked,
-                { onBookmarked(Bookmark(url, breed)) },
+                {
+                    if (isBookmarked)
+                        onDeleteBookmark(Bookmark(url, breed))
+                    else onBookmark(Bookmark(url, breed))
+                },
                 modifier
                     .align(Alignment.Start)
                     .padding(2.dp)
@@ -160,7 +175,9 @@ fun ImageItem(
                 placeholder = painterResource(com.near.common.presentation.R.drawable.ic_placeholder),
                 contentDescription = null,
                 contentScale = ContentScale.None,
-                modifier = Modifier.fillMaxSize().clip(RoundedCornerShape(8.dp))
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(RoundedCornerShape(8.dp))
             )
         }
     }
@@ -179,6 +196,6 @@ fun ImagePrev() {
                 Bookmark("f", "fefe"),
                 Bookmark("f", "fefe"),
             ), Breed("")
-        ), onBookmarked = {})
+        ), onBookmark = {}, {})
 
 }
