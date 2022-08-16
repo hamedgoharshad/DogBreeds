@@ -1,4 +1,4 @@
-Shows nearby places and updates results through walking only if the location has been moved more than 100 meters with First-offline support. Used technologies: Kotlin Coroutines Kts Clean-MVVM arch Jetpack Datastore Unit test, Bound Service
+Shows a list of dog by breeds that can be bookmarked and persist on phone locally. Bookmarks can be filtered by breed. Used technologies: Kotlin-Coroutines-Compose-Kts-Clean MVVM arch-Jetpack Datastore-Unit test
 
 ![image.png](./image.png)
 ![image-7.png](./image-7.png)
