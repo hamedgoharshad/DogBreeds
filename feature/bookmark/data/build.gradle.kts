@@ -54,7 +54,7 @@ dependencies {
         api(project(DATA))
         api(project(TEST_SHARED))
     }
-    api(project(Modules.Feature.Breeds.DOMAIN))
+    api(project(Modules.Feature.Bookmark.DOMAIN))
 
     implementation(Libs.DependencyInjection.Hilt.core)
     kapt(Libs.DependencyInjection.Hilt.compiler)

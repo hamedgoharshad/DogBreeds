@@ -47,19 +47,23 @@ android {
     }
     buildFeatures {
         dataBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.3.0"
     }
 }
+
 dependencies {
     Modules.Common.run {
-        api(project(DATA))
-        api(project(TEST_SHARED))
+        implementation(project(PRESENTATION))
     }
-    api(project(Modules.Feature.Breeds.DOMAIN))
+    implementation(project(Modules.Feature.Bookmark.DATA))
 
     implementation(Libs.DependencyInjection.Hilt.core)
     kapt(Libs.DependencyInjection.Hilt.compiler)
     kapt(Libs.AndroidX.Hilt.compiler)
 
-    addUnitTestDependencies()
+    //addUnitTestDependencies()
     addInstrumentTestDependencies()
 }

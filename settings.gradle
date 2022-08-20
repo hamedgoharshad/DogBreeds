@@ -10,4 +10,8 @@ include ':feature:breeds'
 include ':feature:breeds:domain'
 include ':feature:breeds:data'
 include ':feature:breeds:presentation'
+include ':feature:bookmark'
 rootProject.name = "DogBreeds"
+include ':feature:bookmark:domain'
+include ':feature:bookmark:data'
+include ':feature:bookmark:presentation'
