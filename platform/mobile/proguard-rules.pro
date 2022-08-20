@@ -32,8 +32,8 @@
 
 
 -keep class androidx.datastore.*.** {*;}
--keep class com.near.webApi.response.* {*;}
--keep class com.near.common.data.persistent.database.entity.* {*;}
+-keep class com.hamed.webApi.response.* {*;}
+-keep class com.hamed.common.data.persistent.database.entity.* {*;}
 
 -keepclassmembers class androidx.datastore.preferences.PreferencesProto$PreferenceMap {
     private androidx.datastore.preferences.protobuf.MapFieldLite preferences_;

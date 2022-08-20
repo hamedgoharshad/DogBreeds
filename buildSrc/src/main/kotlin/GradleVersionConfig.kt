@@ -1,5 +1,5 @@
 object GradleVersionConfig {
-    const val APPLICATION_ID = "com.near.task"
+    const val APPLICATION_ID = "com.hamed.task"
     const val VERSION_NAME = "1.0.0"
     const val COMPILE_SDK_VERSION = 32
     const val MIN_SDK_VERSION = 21
