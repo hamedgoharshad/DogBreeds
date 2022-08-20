@@ -1,12 +1,12 @@
-package com.hamed.common.data.datasource.local
+package com.hamed.data.local
 
 import com.hamed.common.data.persistent.database.dao.BookmarkDao
 import com.hamed.common.data.persistent.database.entity.BookmarkEntity
-import com.hamed.common.data.datasource.local.interfaces.BookmarkLocalDatasource
+import com.hamed.data.local.interfaces.BookmarkLocalDatasource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class BookmarkLocalDatasourceImpl @Inject constructor(
+internal class BookmarkLocalDatasourceImpl @Inject constructor(
     private val bookmarkDao: BookmarkDao
 ) : BookmarkLocalDatasource {
 

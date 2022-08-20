@@ -5,7 +5,7 @@ import com.hamed.domain.model.Breed
 import com.hamed.domain.repository.BreedsRepository
 import javax.inject.Inject
 
-class BreedsRepositoryImpl @Inject constructor(private val remoteBreedsDatasource: RemoteBreedsDatasource) :
+internal class BreedsRepositoryImpl @Inject constructor(private val remoteBreedsDatasource: RemoteBreedsDatasource) :
     BreedsRepository {
     override suspend fun getAllBreeds(): List<Breed> =
         remoteBreedsDatasource.getAllBreeds()

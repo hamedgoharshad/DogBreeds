@@ -51,8 +51,8 @@ android {
 }
 dependencies {
     Modules.Common.run {
-        api(project(DATA))
-        api(project(TEST_SHARED))
+        implementation(project(DATA))
+        implementation(project(TEST_SHARED))
     }
     api(project(Modules.Feature.Breeds.DOMAIN))
 

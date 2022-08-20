@@ -14,7 +14,7 @@ import retrofit2.Retrofit
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
-abstract class BreedsModule {
+internal abstract class BreedsModule {
 
     companion object {
         @Provides
