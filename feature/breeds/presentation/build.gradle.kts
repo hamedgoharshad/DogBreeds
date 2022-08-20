@@ -59,6 +59,8 @@ dependencies {
     }
     implementation(project(Modules.Feature.Breeds.DATA))
 
+    implementation(project(Modules.Feature.Bookmark.DATA))
+
     implementation(Libs.DependencyInjection.Hilt.core)
     kapt(Libs.DependencyInjection.Hilt.compiler)
     kapt(Libs.AndroidX.Hilt.compiler)

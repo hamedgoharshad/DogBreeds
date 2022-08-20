@@ -8,7 +8,7 @@ import com.hamed.common.domain.utils.*
 import com.hamed.domain.model.Breed
 import com.hamed.domain.usecase.AddBookmarkUseCase
 import com.hamed.domain.usecase.DeleteBookmarksUseCase
-import com.hamed.domain.usecase.GetBookmarksUseCase
+import com.hamed.domain.repository.usecase.GetBookmarksUseCase
 import com.hamed.domain.usecase.GetBreedImagesUseCase
 import com.hamed.presentation.breedImages.ImagesUiState.Loading
 import com.hamed.presentation.breedImages.navigation.ImagesDestination

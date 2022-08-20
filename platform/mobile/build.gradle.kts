@@ -1,4 +1,5 @@
 import Modules.Feature.Breeds
+import Modules.Feature.Bookmark
 import dependencies.Libs
 
 plugins {
@@ -78,7 +79,12 @@ dependencies {
         implementation(project(Breeds.DOMAIN))
         implementation(project(Breeds.DATA))
         implementation(project(Breeds.PRESENTATION))
+
+        implementation(project(Bookmark.DOMAIN))
+        implementation(project(Bookmark.DATA))
+        implementation(project(Bookmark.PRESENTATION))
     }
+
 
     implementation(Libs.DependencyInjection.Hilt.core)
     kapt(Libs.DependencyInjection.Hilt.compiler)

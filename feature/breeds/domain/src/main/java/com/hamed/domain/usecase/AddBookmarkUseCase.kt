@@ -2,8 +2,8 @@ package com.hamed.domain.usecase
 
 import com.hamed.common.domain.di.IoDispatcher
 import com.hamed.common.domain.model.Bookmark
-import com.hamed.common.domain.usecase.CoroutineUseCase
-import com.hamed.domain.repository.BookmarkRepository
+import com.hamed.common.domain.baseUsecase.CoroutineUseCase
+import com.hamed.domain.repository.repository.BookmarkRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 

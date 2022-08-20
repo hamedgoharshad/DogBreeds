@@ -28,6 +28,8 @@ dependencies {
     api(project(Modules.Common.DOMAIN))
     api(project(Modules.Common.TEST_SHARED))
 
+    implementation(project(Modules.Feature.Bookmark.DOMAIN))
+
     implementation(Libs.DependencyInjection.Hilt.core)
     kapt(Libs.DependencyInjection.Hilt.compiler)
     addUnitTestDependencies()
