@@ -6,7 +6,7 @@
     app:startDestination="@id/nearby_fragment">
     <fragment
         android:id="@+id/nearby_fragment"
-        android:name="com.near.presentation.nearby.NearbyFragment"
+        android:name="com.hamed.presentation.nearby.NearbyFragment"
         android:label="nearbyFragment"
         tools:layout="@layout/fragment_nearby" >
     </fragment>
