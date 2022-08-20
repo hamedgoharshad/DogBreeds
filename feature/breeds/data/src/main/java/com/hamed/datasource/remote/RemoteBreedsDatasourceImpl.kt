@@ -7,7 +7,7 @@ import com.hamed.webApi.service.BreedsService
 import org.json.JSONObject
 import javax.inject.Inject
 
-class RemoteBreedsDatasourceImpl @Inject constructor(
+internal class RemoteBreedsDatasourceImpl @Inject constructor(
     private val service: BreedsService
 ) : RemoteBreedsDatasource {
     override suspend fun getAllBreeds(): List<Breed> =

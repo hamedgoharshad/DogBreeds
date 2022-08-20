@@ -1,4 +1,6 @@
 import dependencies.Libs
+import Modules.Feature.Bookmark
+import Modules.Feature.Breeds
 
 plugins {
     GradlePluginId.run {
@@ -57,7 +59,10 @@ dependencies {
     Modules.Common.run {
         implementation(project(PRESENTATION))
     }
-    implementation(project(Modules.Feature.Breeds.DATA))
+    Modules.Feature.run {
+        implementation(project(Breeds.DATA))
+        implementation(project(Bookmark.DATA))
+    }
 
     implementation(Libs.DependencyInjection.Hilt.core)
     kapt(Libs.DependencyInjection.Hilt.compiler)

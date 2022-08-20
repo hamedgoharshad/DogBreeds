@@ -20,7 +20,13 @@ object Modules {
     object Feature {
         private const val feature = ":feature"
         object Breeds {
-            const val root = "$feature:breeds"
+            private const val root = "$feature:breeds"
+            const val DOMAIN = "$root:domain"
+            const val DATA = "$root:data"
+            const val PRESENTATION = "$root:presentation"
+        }
+        object Bookmark {
+            private const val root = "$feature:bookmark"
             const val DOMAIN = "$root:domain"
             const val DATA = "$root:data"
             const val PRESENTATION = "$root:presentation"
