@@ -1,7 +1,6 @@
 import dependencies.Libs
 import dependencies.Libs.AndroidX.Fragment
 import dependencies.Libs.AndroidX.LifeCycle
-import dependencies.Libs.AndroidX.LifeCycle.lifecycleCompose
 import dependencies.Libs.AndroidX.Navigation
 
 plugins {

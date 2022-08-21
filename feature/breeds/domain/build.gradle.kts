@@ -1,6 +1,4 @@
 import dependencies.Libs
-import Modules.Common.DOMAIN
-import Modules.Common.TEST_SHARED
 
 plugins {
     GradlePluginId.run {
@@ -31,7 +29,6 @@ dependencies {
         api(project(DOMAIN))
         api(project(TEST_SHARED))
     }
-
     implementation(Libs.DependencyInjection.Hilt.core)
     kapt(Libs.DependencyInjection.Hilt.compiler)
     addUnitTestDependencies()
