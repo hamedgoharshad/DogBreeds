@@ -5,6 +5,7 @@ plugins {
     GradlePluginId.run {
         id(ANDROID_LIBRARY)
         id(KOTLIN_ANDROID)
+        id(KOTLIN_KAPT)
     }
 }
 android {
@@ -28,7 +29,7 @@ android {
 
     kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
     buildFeatures {
-        dataBinding= true
+        dataBinding = true
     }
 }
 java {
@@ -44,8 +45,11 @@ dependencies {
     implementation(Libs.AndroidX.Fragment.test)
     implementation(Libs.AndroidX.LifeCycle.liveData)
     implementation(Test.Espresso.core)
-  //  implementation(Test.Mockk.mockk)
     implementation(Test.runner)
     implementation(Libs.AndroidX.Room.core)
     implementation(Libs.AndroidX.Room.runtime)
+    implementation(Libs.DependencyInjection.Hilt.testing)
+    implementation(Libs.DependencyInjection.Hilt.compiler)
+    kaptTest(Libs.DependencyInjection.Hilt.compiler)
+    kaptAndroidTest(Libs.DependencyInjection.Hilt.compiler)
 }

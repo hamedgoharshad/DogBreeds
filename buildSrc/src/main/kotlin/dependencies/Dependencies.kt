@@ -1,5 +1,7 @@
 package dependencies
 
+import org.gradle.kotlin.dsl.DependencyHandlerScope
+
 object Libs {
     const val material = "com.google.android.material:material:1.2.1"
     const val timber = "com.jakewharton.timber:timber:4.7.1"
@@ -222,6 +224,7 @@ object Test {
     const val rules = "androidx.test:rules:$runnerVersion"
     const val truth = "com.google.truth:truth:1.1.3"
     const val service = "androidx.test.services:test-services:$serviceVersion"
+    const val jupiter = "org.junit.jupiter:junit-jupiter"
 
     object Espresso {
         private const val version = "3.4.0"

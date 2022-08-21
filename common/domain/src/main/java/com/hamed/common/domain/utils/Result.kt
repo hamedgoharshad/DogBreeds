@@ -92,6 +92,9 @@ inline fun <reified T> Result<T>.updateOnSuccess(stateFlow: MutableStateFlow<T>)
 val <T> Result<T>.data: T?
     get() = (this as? Success)?.data
 
+val <T> Result<T>.error: Exception?
+    get() = (this as? Failure)?.error
+
 val Result<*>.succeeded
     get() = this is Success && data != null
 
