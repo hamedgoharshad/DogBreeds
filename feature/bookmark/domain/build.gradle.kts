@@ -31,5 +31,5 @@ dependencies {
 
     implementation(Libs.DependencyInjection.Hilt.core)
     kapt(Libs.DependencyInjection.Hilt.compiler)
-    addUnitTestDependencies()
+    //addUnitTestDependencies()
 }

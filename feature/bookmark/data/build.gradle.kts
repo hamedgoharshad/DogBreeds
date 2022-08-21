@@ -52,7 +52,7 @@ android {
 dependencies {
     Modules.Common.run {
         api(project(DATA))
-        api(project(TEST_SHARED))
+       // api(project(TEST_SHARED))
     }
     api(project(Modules.Feature.Bookmark.DOMAIN))
 

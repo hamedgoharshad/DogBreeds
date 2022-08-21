@@ -52,14 +52,10 @@ android {
 dependencies {
     Modules.Common.run {
         implementation(project(DATA))
-        implementation(project(TEST_SHARED))
     }
     api(project(Modules.Feature.Breeds.DOMAIN))
 
     implementation(Libs.DependencyInjection.Hilt.core)
     kapt(Libs.DependencyInjection.Hilt.compiler)
     kapt(Libs.AndroidX.Hilt.compiler)
-
-    addUnitTestDependencies()
-    addInstrumentTestDependencies()
 }

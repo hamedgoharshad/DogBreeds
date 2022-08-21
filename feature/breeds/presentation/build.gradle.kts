@@ -41,9 +41,6 @@ android {
             freeCompilerArgs.toMutableList().apply { add("-Xopt-in=kotlin.RequiresOptIn") }
     }
     testOptions {
-        unitTests.all {
-            it.jvmArgs = listOf("-XX:MaxPermSize=256m")
-        }
         unitTests.isIncludeAndroidResources = true
         unitTests.isReturnDefaultValues = true
     }
@@ -68,6 +65,6 @@ dependencies {
     kapt(Libs.DependencyInjection.Hilt.compiler)
     kapt(Libs.AndroidX.Hilt.compiler)
 
-    //addUnitTestDependencies()
+    addUnitTestDependencies()
     addInstrumentTestDependencies()
 }

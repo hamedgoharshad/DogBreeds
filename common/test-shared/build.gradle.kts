@@ -49,7 +49,7 @@ dependencies {
     implementation(Libs.AndroidX.Room.core)
     implementation(Libs.AndroidX.Room.runtime)
     implementation(Libs.DependencyInjection.Hilt.testing)
-    implementation(Libs.DependencyInjection.Hilt.compiler)
+   // implementation(Libs.DependencyInjection.Hilt.compiler)
     kaptTest(Libs.DependencyInjection.Hilt.compiler)
     kaptAndroidTest(Libs.DependencyInjection.Hilt.compiler)
 }
