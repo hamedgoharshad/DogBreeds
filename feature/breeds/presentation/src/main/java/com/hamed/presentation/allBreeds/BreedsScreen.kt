@@ -68,7 +68,7 @@ fun BreedsScreen(
             ) {
                 Image(
                     imageVector = Icons.Default.Favorite,
-                    contentDescription = "support",
+                    contentDescription = "favorite",
                     Modifier
                         .clickable {
                             navigateToBookmark()

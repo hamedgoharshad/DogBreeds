@@ -1,7 +1,5 @@
 package dependencies
 
-import org.gradle.kotlin.dsl.DependencyHandlerScope
-
 object Libs {
     const val material = "com.google.android.material:material:1.2.1"
     const val timber = "com.jakewharton.timber:timber:4.7.1"
@@ -164,8 +162,8 @@ object Libs {
         private const val uiTestJunitVersion = composeVersion
         private const val lifeCycleRunTimeKtx = "2.4.1"
         private const val arrow = "1.0.1"
-        private const val composeUI = composeVersion
-        private const val composeRuntime = composeVersion
+        private const val composeUIVersion = composeVersion
+        private const val composeRuntimeVersion = composeVersion
         private const val foundationVersion = composeVersion
         private const val appcompatThemeVersion = "0.16.0"
         private const val constraintLayoutVersion = "1.0.1"
@@ -183,13 +181,13 @@ object Libs {
         const val uiTestJunit = "androidx.compose.ui:ui-test-junit4:${uiTestJunitVersion}"
         const val appcompatTheme =
             "com.google.accompanist:accompanist-appcompat-theme:${appcompatThemeVersion}"
-        const val ui = "androidx.compose.ui:ui:${composeUI}"
-        const val runtime = "androidx.compose.runtime:runtime:${composeRuntime}"
+        const val ui = "androidx.compose.ui:ui:${composeUIVersion}"
+        const val runtime = "androidx.compose.runtime:runtime:${composeRuntimeVersion}"
         const val constraintLayout =
             "androidx.constraintlayout:constraintlayout-compose:${constraintLayoutVersion}"
         const val material3 = "androidx.compose.material3:material3:${material3Version}"
         const val material3WindowsSize =
-            "androidx.compose.material3:material3-window-size-class:${material3}"
+            "androidx.compose.material3:material3-window-size-class:${material3Version}"
         const val navigation = "androidx.navigation:navigation-compose:${navVersion}"
         const val foundation = "androidx.compose.foundation:foundation:${foundationVersion}"
         const val systemUIController =
@@ -197,6 +195,7 @@ object Libs {
         const val hiltNavigation = "androidx.hilt:hilt-navigation-compose:${hiltNavVersion}"
         const val icons = "androidx.compose.material:material-icons-extended:${composeVersion}"
         const val coil = "io.coil-kt:coil-compose:${coilVersion}"
+        const val testManifest = "androidx.compose.ui:ui-test-manifest:$composeRuntimeVersion"
     }
 
 }
@@ -212,6 +211,7 @@ object Test {
     private const val jsonVersion = "20180813"
     private const val runnerVersion = "1.4.0"
     private const val serviceVersion = "1.4.1"
+    private const val turbineVersion = "0.8.0"
 
     const val barista = "com.schibsted.spain:barista:3.9.0"
     const val json = "org.json:json:$jsonVersion"
@@ -225,6 +225,7 @@ object Test {
     const val truth = "com.google.truth:truth:1.1.3"
     const val service = "androidx.test.services:test-services:$serviceVersion"
     const val jupiter = "org.junit.jupiter:junit-jupiter"
+    const val turbine = "app.cash.turbine:turbine:$turbineVersion"
 
     object Espresso {
         private const val version = "3.4.0"

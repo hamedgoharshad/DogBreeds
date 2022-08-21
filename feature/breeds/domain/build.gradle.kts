@@ -27,7 +27,7 @@ android {
 dependencies {
     Modules.Common.run {
         api(project(DOMAIN))
-        api(project(TEST_SHARED))
+     //   api(project(TEST_SHARED))
     }
     implementation(Libs.DependencyInjection.Hilt.core)
     kapt(Libs.DependencyInjection.Hilt.compiler)

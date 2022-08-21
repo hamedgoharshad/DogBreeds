@@ -11,6 +11,7 @@ fun DependencyHandlerScope.addUnitTestDependencies() {
     "testImplementation"(Test.core)
     "testImplementation"(Test.runner)
     "testImplementation"(Test.Mockk.mockk)
+    "testImplementation"(Test.turbine)
     //"testImplementation"(Test.jupiter)
 }
 
@@ -24,6 +25,6 @@ fun DependencyHandlerScope.addInstrumentTestDependencies() {
     "androidTestImplementation"(Test.runner)
     "androidTestImplementation"(Test.rules)
     "androidTestImplementation"(Test.Espresso.core)
-    // "androidTestImplementation"(Test.Mockk.androidMockk)
+    "androidTestImplementation"(Test.Mockk.androidMockk)
     //"androidTestImplementation"(Test.service)
 }

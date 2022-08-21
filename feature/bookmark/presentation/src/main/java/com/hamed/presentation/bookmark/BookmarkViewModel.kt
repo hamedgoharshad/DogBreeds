@@ -26,7 +26,7 @@ class BookmarkViewModel @Inject constructor(
                 BookmarkUiState.Success(result.data, filter)
             }
             is Result.Failure -> {
-                BookmarkUiState.Failed(Exception(result.error))
+                BookmarkUiState.Failed(result.error)
             }
             Result.Loading -> BookmarkUiState.Loading
         }
