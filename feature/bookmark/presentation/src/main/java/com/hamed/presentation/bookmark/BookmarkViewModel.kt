@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hamed.common.domain.model.Bookmark
 import com.hamed.common.domain.utils.Result
+import com.hamed.common.domain.utils.ifNullReturn
 import com.hamed.domain.repository.usecase.GetBookmarksUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -23,7 +24,9 @@ class BookmarkViewModel @Inject constructor(
     ) { result, filter ->
         when (result) {
             is Result.Success -> {
-                BookmarkUiState.Success(result.data, filter)
+                val data = result.data
+                BookmarkUiState.Success(data.map { it.breed },
+                    filter.ifNullReturn(data) { data.filter { it.breed == filter } })
             }
             is Result.Failure -> {
                 BookmarkUiState.Failed(result.error)
@@ -44,6 +47,8 @@ class BookmarkViewModel @Inject constructor(
 @Immutable
 sealed class BookmarkUiState {
     object Loading : BookmarkUiState()
-    data class Success(val bookmarks: List<Bookmark>, val filter: String?) : BookmarkUiState()
+    data class Success(val bookmarkedBreeds: List<String>, val filtered: List<Bookmark>) :
+        BookmarkUiState()
+
     data class Failed(val exception: Exception) : BookmarkUiState()
 }

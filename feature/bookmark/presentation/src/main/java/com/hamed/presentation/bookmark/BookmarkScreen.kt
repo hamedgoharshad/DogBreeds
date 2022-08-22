@@ -24,7 +24,6 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.hamed.common.domain.utils.ifNullReturn
 import com.hamed.common.presentation.R
 import com.hamed.common.presentation.compose.component.FailureScreen
 import com.hamed.common.presentation.compose.component.LoadingScreen
@@ -60,14 +59,14 @@ fun BookmarkScreen(
         }
         is BookmarkUiState.Success -> {
             Column(Modifier.fillMaxSize()) {
-                if (uiState.bookmarks.isNotEmpty()) {
+                if (uiState.bookmarkedBreeds.isNotEmpty()) {
                     Surface(
                         Modifier
                             .fillMaxWidth()
                             .fillMaxHeight(.1f)
                     ) {
                         FilterDropDown(
-                            uiState.bookmarks.map { it.breed }.distinct(),
+                            uiState.bookmarkedBreeds.distinct(),
                             onFiltered
                         )
                     }
@@ -87,8 +86,6 @@ fun BookmarkContent(
 ) {
     LazyVerticalGrid(cells = GridCells.Fixed(3), Modifier.padding(4.dp)) {
         uiState.run {
-            val filtered =
-                filter.ifNullReturn(bookmarks) { bookmarks.filter { it.breed == filter } }
             items(filtered) {
                 BookmarkItem(it.id, it.breed, modifier)
             }
